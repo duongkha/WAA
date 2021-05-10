@@ -12,12 +12,14 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "account")
-public class Account implements Serializable {
+@Table(name = "user")
+public class User implements Serializable {
+    private static final long serialVersionUID = 7359591984285268537L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id", nullable = false)
-    private int id;
+    @Column(name = "user_id", nullable = false)
+    private long id;
 
     @Column(name = "username", nullable = false)
     private String username;
@@ -29,7 +31,8 @@ public class Account implements Serializable {
     private boolean active;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false))
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false))
     private Set<Role> roles;
+
 
 }
