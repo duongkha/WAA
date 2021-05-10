@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4de9d6-3a34-4221-acb3-e9ca6e7ee817" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Login/Login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/Home/Home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/dto/AddressDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/dto/RoleDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/dto/UserDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -92,7 +99,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620605324764</updated>
-      <workItem from="1620605327273" duration="7014000" />
+      <workItem from="1620605327273" duration="9497000" />
     </task>
     <servers />
   </component>
