@@ -2,32 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4de9d6-3a34-4221-acb3-e9ca6e7ee817" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/azure/azureSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/azure/azureSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce_fe.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Approval/Approval.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Approval/Approval.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Registration/Registration.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Registration/Registration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Seller/OrderManager.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Seller/OrderManager.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/API-Config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/JwtRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/Role.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/JwtUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620605324764</updated>
-      <workItem from="1620605327273" duration="1414000" />
+      <workItem from="1620605327273" duration="2619000" />
     </task>
     <servers />
   </component>

@@ -1,9 +1,9 @@
 package miu.edu.ecommerce.service;
 
-import java.util.ArrayList;
 
+import miu.edu.ecommerce.domain.User;
 import miu.edu.ecommerce.repository.UserRepository;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("Could not find user");
 		}
 
-		return new MyUserDetails(user);
+		return new UserDetailsImpl(user);
 	}
 
 }
