@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4de9d6-3a34-4221-acb3-e9ca6e7ee817" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/ConfirmationToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/NewUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/RoleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
