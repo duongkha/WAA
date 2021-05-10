@@ -40,7 +40,4 @@ public class ShoppingCart implements Serializable {
     @JoinColumn(name="buyer_id")
     Buyer buyer;
 
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(name = "shoppingcart_detail", joinColumns = @JoinColumn(name = "shopping_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "product_variant_id", nullable = false))
-//    private Set<ProductVariant> productVariantSet;
 }
