@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -14,10 +13,12 @@ import java.util.Set;
 @Entity
 @Table(name = "seller")
 public class Seller implements Serializable {
+    private static final long serialVersionUID = 7359591984285268537L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seller_id", nullable = false)
-    private int id;
+    private long id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -34,14 +35,14 @@ public class Seller implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "is_approved")
-    private boolean isApproved;
+    @Column(name = "approved")
+    private boolean approved;
 
     @Embedded
     private Address address;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="account_id")
-    Account account;
+    @JoinColumn(name="user_id")
+    User account;
 
 }
