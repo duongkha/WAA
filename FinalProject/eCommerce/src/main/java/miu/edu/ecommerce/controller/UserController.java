@@ -8,7 +8,6 @@ public class UserController {
 
     @RequestMapping({ "/getuserinfo" })
     public String getUserInfo() {
-
         return "User Info";
     }
 
