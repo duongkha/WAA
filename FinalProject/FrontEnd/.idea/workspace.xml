@@ -2,9 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4de9d6-3a34-4221-acb3-e9ca6e7ee817" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/NewUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/NewUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/CategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/RoleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/SellerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/AdminServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/BuyerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/CategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/SellerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Schedule/Task Assignments.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Schedule/Task Assignments.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/domain/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/AdminRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/BuyerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/BuyerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/SellerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/repository/SellerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/BuyerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/BuyerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/SellerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
