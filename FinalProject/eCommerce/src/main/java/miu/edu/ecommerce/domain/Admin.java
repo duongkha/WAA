@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "admin")
+@Table(name = "admins")
 public class Admin implements Serializable {
     private static final long serialVersionUID = 7359591984285268537L;
 
@@ -20,17 +20,11 @@ public class Admin implements Serializable {
     @Column(name = "admin_id", nullable = false)
     private long id;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
-    @Column(name = "position")
-    private String position;
+    @Column(name = "level")
+    private String level;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
-    User account;
+    User user;
 
 }

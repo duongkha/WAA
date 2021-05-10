@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "payment")
+@Table(name = "payments")
 public class Payment implements Serializable {
     private static final long serialVersionUID = 7359591984285268537L;
 

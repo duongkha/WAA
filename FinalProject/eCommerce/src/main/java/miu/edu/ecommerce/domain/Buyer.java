@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "buyer")
+@Table(name = "buyers")
 public class Buyer implements Serializable {
     private static final long serialVersionUID = 7359591984285268537L;
 
@@ -20,26 +20,11 @@ public class Buyer implements Serializable {
     @Column(name = "buyer_id", nullable = false)
     private long id;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "rest_points")
-    private int restPoints;
-
-    @Embedded
-    private Address address;
+    @Column(name = "accumulated_points")
+    private int accumulatedPoints;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
-    User account;
+    User user;
 
 }

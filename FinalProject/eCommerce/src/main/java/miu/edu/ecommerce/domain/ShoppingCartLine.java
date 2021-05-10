@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "shopping_cart_line")
+@Table(name = "shoppingcartlines")
 public class ShoppingCartLine implements Serializable {
     private static final long serialVersionUID = 7359591984285268537L;
 
