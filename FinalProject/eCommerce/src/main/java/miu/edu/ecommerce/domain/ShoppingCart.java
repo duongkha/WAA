@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "shopping_cart")
+@Table(name = "shoppingcarts")
 public class ShoppingCart implements Serializable {
     private static final long serialVersionUID = 7359591984285268537L;
 

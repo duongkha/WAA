@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "shipping_method")
+@Table(name = "shippingmethods")
 public class ShippingMethod implements Serializable {
     private static final long serialVersionUID = 7359591984285268537L;
 

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "order_history")
+@Table(name = "orderhistory")
 public class OrderHistory implements Serializable {
     private static final long serialVersionUID = 7359591984285268537L;
 
