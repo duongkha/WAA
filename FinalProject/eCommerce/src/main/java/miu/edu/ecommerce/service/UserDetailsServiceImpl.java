@@ -50,6 +50,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			User user = new User();
 			user.setUsername(newUser.getUsername());
 			user.setPassword(encryptedPassword);
+			user.setFirstName(newUser.getFirstName());
+			user.setLastName(newUser.getLastName());
+			user.setPhoneNumber(newUser.getPhone());
 			Role role = roleRepository.getRoleById(newUser.getRole());
 			user.setRoles(new HashSet<>(Arrays.asList(roleRepository.getRoleById(newUser.getRole()))));
 			final User createdUser = userRepository.save(user);
