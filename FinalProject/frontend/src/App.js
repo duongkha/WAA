@@ -31,7 +31,7 @@ function App() {
             <header className="row">
             <div>
                 <a className="brand" href="/">
-                amazona
+                Shopping
                 </a>
             </div>
             <div>
@@ -44,18 +44,18 @@ function App() {
                 </li>
             </div>
             </header>
-        <main>
-            <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path="/sign-in" component={Login} />
-                <Route path="/sign-up" component={SignUp} />
-                <Redirect from="/" to="/home" />
-            </Switch>
-          {/* <Route path="/product/:id" component={ProductScreen}></Route>
-          <Route path="/" component={HomeScreen} exact></Route> */}
-        </main>
-        <footer className="row center">All right reserved</footer>
-      </div>
+            <main>
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route path="/sign-in" component={Login} />
+                    <Route path="/sign-up" component={SignUp} />
+                    <Redirect from="/" to="/home" />
+                </Switch>
+            {/* <Route path="/product/:id" component={ProductScreen}></Route>
+            <Route path="/" component={HomeScreen} exact></Route> */}
+            </main>
+            <footer className="row center">Footer</footer>
+        </div>
             {/* <div className="App">
                 <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                     <div className="container">
