@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4de9d6-3a34-4221-acb3-e9ca6e7ee817" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../ecommerce_fe/src/store/AppContext.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ecommerce_fe/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ecommerce_fe/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ecommerce_fe/src/components/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ecommerce_fe/src/components/Login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ecommerce_fe/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ecommerce_fe/src/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

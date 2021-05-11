@@ -29,14 +29,13 @@ export default function Login(props) {
             info.token = response.data.token;
             console.log(info.token);
             const headers = {
-                'withCredentials': 'true',
-                'Access-Control-Allow-Origin': '*',
+                 'Access-Control-Allow-Origin': '*',
                 'Authorization': 'Bearer ' + info.token,
             }
             axios(APIs.userAPI + "/current",{headers})
                 .then(response=>{
                     info.userdetails = response.data;
-                    alert(response.data);
+                   // alert(response.data);
                 }).catch(error => {
                 alert(error.message);
             })
