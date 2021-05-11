@@ -20,13 +20,13 @@ public class OrderLine implements Serializable {
     @Column(name = "order_line_id", nullable = false)
     private long id;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity", nullable = false, columnDefinition = "int default 0")
     private int quantity;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = false, columnDefinition = "double default 0.0")
     private Double price;
 
-    @Column(name = "line_total")
+    @Column(name = "line_total", columnDefinition = "double default 0.0")
     private Double lineTotal;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

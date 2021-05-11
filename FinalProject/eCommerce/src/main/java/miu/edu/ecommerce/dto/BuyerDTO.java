@@ -1,9 +1,10 @@
 package miu.edu.ecommerce.dto;
 
-import miu.edu.ecommerce.domain.User;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
-
+@Getter
+@Setter
 public class BuyerDTO {
     private long id;
     private int accumulatedPoints;

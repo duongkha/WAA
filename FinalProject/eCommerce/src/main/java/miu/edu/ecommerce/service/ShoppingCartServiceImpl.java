@@ -25,15 +25,31 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     }
 
     @Override
-    public ShoppingCart addLineToShoppingCart(Long cartId, ShoppingCartLine cartline) {
-        shoppingCartLineRepository.save(cartline);
-        return shoppingCartRepository.findById(cartId).get();
+    public void addLineToShoppingCart(Long cartId, ShoppingCartLine cartline) {
+        Optional<ShoppingCart> cart =  shoppingCartRepository.findById(cartId);
+        if(cart.isPresent()){
+            ShoppingCart foundCart = cart.get();
+            foundCart.setTotalMoney(foundCart.getTotalMoney() + cartline.getLineTotal());
+            cartline.setCart(foundCart);
+            shoppingCartRepository.save(foundCart);
+            shoppingCartLineRepository.save(cartline);
+        }
     }
 
     @Override
-    public ShoppingCart removeLineFromShoppingCart(Long cartId, Long cartLineId) {
-        shoppingCartLineRepository.deleteById(cartLineId);
-        return shoppingCartRepository.findById(cartId).get();
+    public void removeLineFromShoppingCart(Long cartId, Long cartLineId) {
+        Optional<ShoppingCart> cart =  shoppingCartRepository.findById(cartId);
+        if(cart.isPresent()){
+            ShoppingCart foundCart = cart.get();
+            Optional<ShoppingCartLine> cartLine = foundCart.getCartLines().stream()
+                    .filter(line-> line.getId() == cartLineId)
+                    .findFirst();
+            if(cartLine.isPresent()){
+                foundCart.setTotalMoney(foundCart.getTotalMoney() - cartLine.get().getLineTotal());
+                shoppingCartRepository.save(foundCart);
+                shoppingCartLineRepository.deleteById(cartLineId);
+            }
+        }
     }
 
     @Override

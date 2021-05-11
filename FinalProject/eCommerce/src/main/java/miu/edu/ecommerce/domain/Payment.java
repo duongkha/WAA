@@ -26,7 +26,7 @@ public class Payment implements Serializable {
     @Column(name = "payment_date", nullable = false)
     private LocalDate paymentDate;
 
-    @Column(name = "payment_amount", nullable = false)
+    @Column(name = "payment_amount", nullable = false, columnDefinition = "double default 0.0")
     private Double paymentAmount;
 
     @Column(name = "card_holder", nullable = false)

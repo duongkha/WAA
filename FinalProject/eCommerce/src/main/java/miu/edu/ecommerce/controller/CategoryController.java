@@ -1,6 +1,7 @@
 package miu.edu.ecommerce.controller;
 
 import miu.edu.ecommerce.domain.Category;
+import miu.edu.ecommerce.domain.Product;
 import miu.edu.ecommerce.dto.CategoryDTO;
 import miu.edu.ecommerce.service.CategoryService;
 import org.modelmapper.ModelMapper;
@@ -20,7 +21,6 @@ public class CategoryController {
 
     @GetMapping
     public List<CategoryDTO> getAll(){
-
         List<Category> categories = categoryService.getAll();
         return categories.stream().map(c->modelMapper.map(c, CategoryDTO.class)).collect(Collectors.toList());
     }
@@ -38,5 +38,9 @@ public class CategoryController {
         return modelMapper.map(cat, CategoryDTO.class);
     }
 
+    @PostMapping()
+    public void createCategory(@RequestBody Category category){
+        categoryService.createCategory(category);
+    }
 
 }
