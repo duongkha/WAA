@@ -34,10 +34,9 @@ public class Review implements Serializable {
     @Column(name = "approved")
     private boolean approved;
 
-
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="buyer_id")
-    Buyer buyer;
+    @JoinColumn(name="user_id")
+    User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="product_id")

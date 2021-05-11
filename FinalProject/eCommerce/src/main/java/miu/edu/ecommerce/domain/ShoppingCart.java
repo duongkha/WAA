@@ -27,7 +27,7 @@ public class ShoppingCart implements Serializable {
     @Column(name = "cart_date", nullable = false)
     private LocalDate cartDate;
 
-    @Column(name = "total_money", nullable = false)
+    @Column(name = "total_money")
     private Double totalMoney;
 
     @Column(name = "completed")

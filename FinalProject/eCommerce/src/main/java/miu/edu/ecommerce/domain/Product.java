@@ -38,7 +38,7 @@ public class Product implements Serializable {
     @Column(name = "size", length=5)
     private String size;
 
-    @Column(name = "price" )
+    @Column(name = "price", columnDefinition = "double default 0.0" )
     private Double price;
 
     @Column(name = "due_date")
@@ -47,10 +47,13 @@ public class Product implements Serializable {
     @Column(name = "quantity_in_stock")
     private int quantityInStock;
 
+    @Column(name = "photo")
+    private String photo;
+
     @OneToMany(mappedBy="product")
     private List<Review> reviews = new ArrayList();
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name="category_id")
     Category category;
 
