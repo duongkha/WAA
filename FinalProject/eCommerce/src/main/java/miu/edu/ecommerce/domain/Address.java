@@ -10,5 +10,4 @@ public class Address implements Serializable {
     private String state;
     private String country;
     private String zipcode;
-
 }
