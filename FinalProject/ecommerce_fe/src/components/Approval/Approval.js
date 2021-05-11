@@ -1,0 +1,1 @@
+//approve for seller registration

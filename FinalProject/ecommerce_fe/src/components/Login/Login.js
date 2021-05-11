@@ -22,12 +22,12 @@ export default function Login(props) {
 
         }
         axios.post(APIs.loginAPI, {
-          username:email,
-          password:password
+            username:email,
+            password:password
         }).then(response => {
-                alert(response.data.token);
-                props.history.push('/home');
-            })
+            alert(response.data.token);
+            props.history.push('/home');
+        })
             .catch(error => {
                 alert(error.message);
             })
