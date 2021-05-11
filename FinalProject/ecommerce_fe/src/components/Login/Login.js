@@ -19,16 +19,28 @@ export default function Login(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        const headers = {
-            'Access-Control-Allow-Origin': '*',
 
-        }
         axios.post(APIs.loginAPI, {
             username:email,
             password:password
         }).then(response => {
            // alert(response.data.token);
-            setUserInfo(response.data.token);
+            let info = {};
+            info.token = response.data.token;
+            console.log(info.token);
+            const headers = {
+                'withCredentials': 'true',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + info.token,
+            }
+            axios(APIs.userAPI + "/current",{headers})
+                .then(response=>{
+                    info.userdetails = response.data;
+                    alert(response.data);
+                }).catch(error => {
+                alert(error.message);
+            })
+            setUserInfo(info);
             props.history.push('/');
         })
             .catch(error => {

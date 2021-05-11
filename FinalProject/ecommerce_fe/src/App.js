@@ -33,15 +33,15 @@ function App() {
   return (
       <APIConfig.Provider value={
         {
-          registerAPI: 'http://localhost:8080/register',
+          registerAPI: 'http://localhost:8080/api/register',
           loginAPI: 'http://localhost:8080/authenticate',
           logoutAPI: 'http://localhost:8080/logout',
-          productAPI: 'http://localhost:8080/products',
-          orderAPI: 'http://localhost:8080/orders',
-          sellerAPI: 'http://localhost:8080/sellers',
-          categoryAPI: 'http://localhost:8080/categories',
-          roleAPI: 'http://localhost:8080/roles',
-          userAPI: 'http://localhost:8080/user',
+          productAPI: 'http://localhost:8080/api/products',
+          orderAPI: 'http://localhost:8080/api/orders',
+          sellerAPI: 'http://localhost:8080/api/sellers',
+          categoryAPI: 'http://localhost:8080/api/categories',
+          roleAPI: 'http://localhost:8080/api/roles',
+          userAPI: 'http://localhost:8080/api/users',
         }
       }>
         <UserInfo.Provider value={{ userInfo, setUserInfo }}>
