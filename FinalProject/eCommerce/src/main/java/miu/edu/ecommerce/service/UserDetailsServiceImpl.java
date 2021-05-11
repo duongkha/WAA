@@ -45,7 +45,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	public String signUpUser(NewUser newUser) {
 		try {
-			if (userRepository.getUserByUsername(newUser.getUsername()) != null) {
+			User u = userRepository.getUserByUsername(newUser.getUsername());
+			if (u!= null) {
 				return "User name is existing.";
 			}
 			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
