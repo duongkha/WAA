@@ -1,6 +1,7 @@
 package miu.edu.ecommerce.service;
 
 import miu.edu.ecommerce.domain.Product;
+import miu.edu.ecommerce.domain.Review;
 import miu.edu.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Optional<Product> getProductById(long productId) {
+    public Optional<Product> getProductById(Long productId) {
         return productRepository.findById(productId);
     }
 
@@ -31,7 +32,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void deleteProduct(long productId) {
+    public void deleteProduct(Long productId) {
         productRepository.deleteById(productId);
+    }
+
+    @Override
+    public List<Review> getAllReviewsByProductId(Long productId) {
+        return productRepository.findReviewsByProductId(productId);
     }
 }

@@ -29,11 +29,11 @@ public class ShoppingCartLine implements Serializable {
     @Column(name = "line_total")
     private Double lineTotal;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name="cart_id")
     ShoppingCart cart;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name="product_id")
     Product product;
 
