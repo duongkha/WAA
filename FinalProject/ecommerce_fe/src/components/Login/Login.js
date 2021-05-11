@@ -4,10 +4,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import {APIConfig} from "../../store/API-Config";
+import {Link} from "react-router-dom";
+import {UserInfo} from "../../store/AppContext";
 
 export default function Login(props) {
     const APIs = useContext(APIConfig);
-
+    const { userInfo, setUserInfo } = useContext(UserInfo);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -25,8 +27,9 @@ export default function Login(props) {
             username:email,
             password:password
         }).then(response => {
-            alert(response.data.token);
-            props.history.push('/home');
+           // alert(response.data.token);
+            setUserInfo(response.data.token);
+            props.history.push('/');
         })
             .catch(error => {
                 alert(error.message);
@@ -34,29 +37,49 @@ export default function Login(props) {
     }
 
     return (
-        <div className="Login">
-            <Form onSubmit={handleSubmit}>
-                <Form.Group size="lg" controlId="email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        autoFocus
+        <div>
+            <form className="form" onSubmit={handleSubmit}>
+                <div>
+                    <h1>Sign In</h1>
+                </div>
+                {/*{loading && <LoadingBox></LoadingBox>}*/}
+                {/*{error && <MessageBox variant="danger">{error}</MessageBox>}*/}
+                <div>
+                    <label htmlFor="email">Email address</label>
+                    <input
                         type="email"
-                        value={email}
+                        id="email"
+                        placeholder="Enter email"
+                        required
                         onChange={(e) => setEmail(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group size="lg" controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
+                    ></input>
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input
                         type="password"
-                        value={password}
+                        id="password"
+                        placeholder="Enter password"
+                        required
                         onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
-                <Button block size="lg" type="submit" disabled={!validateForm()}>
-                    Login
-                </Button>
-            </Form>
+                    ></input>
+                </div>
+                <div>
+                    <label />
+                    <button className="primary" type="submit">
+                        Sign In
+                    </button>
+                </div>
+                <div>
+                    <label />
+                    <div>
+                        New customer?{' '}
+                        <Link to={`/register`}>
+                            Create your account
+                        </Link>
+                    </div>
+                </div>
+            </form>
         </div>
     );
 }
