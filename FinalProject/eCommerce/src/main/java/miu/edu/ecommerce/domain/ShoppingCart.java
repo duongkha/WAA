@@ -36,7 +36,7 @@ public class ShoppingCart implements Serializable {
     @OneToMany(mappedBy="cart")
     private List<ShoppingCartLine> cartLines = new ArrayList();
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name="buyer_id")
     Buyer buyer;
 

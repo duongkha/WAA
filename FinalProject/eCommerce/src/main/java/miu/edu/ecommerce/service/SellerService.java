@@ -1,6 +1,5 @@
 package miu.edu.ecommerce.service;
 
-
 import miu.edu.ecommerce.domain.Seller;
 import miu.edu.ecommerce.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
