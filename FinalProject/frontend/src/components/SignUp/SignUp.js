@@ -111,5 +111,5 @@ const actionCreators = {
     register: userActions.register
 }
 
-const connectedRegisterPage = connect(mapState, actionCreators)(RegisterPage);
-export { connectedRegisterPage as RegisterPage };
+const connectedSinUp = connect(mapState, actionCreators)(SinUp);
+export { connectedSinUp as SinUp };
