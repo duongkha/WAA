@@ -34,10 +34,7 @@ public class ShoppingCartLine implements Serializable {
     ShoppingCart cart;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="product_variant_id")
-    ProductVariant productVariant;
+    @JoinColumn(name="product_id")
+    Product product;
 
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(name = "shoppingcart_detail", joinColumns = @JoinColumn(name = "shopping_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "product_variant_id", nullable = false))
-//    private Set<ProductVariant> productVariantSet;
 }

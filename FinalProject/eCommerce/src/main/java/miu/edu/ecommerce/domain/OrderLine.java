@@ -34,7 +34,7 @@ public class OrderLine implements Serializable {
     Order order;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="product_variant_id")
-    ProductVariant productVariant;
+    @JoinColumn(name="product_id")
+    Product product;
 
 }

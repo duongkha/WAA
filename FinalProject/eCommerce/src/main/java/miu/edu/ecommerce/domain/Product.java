@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,18 +29,30 @@ public class Product implements Serializable {
     @Column(name = "producer")
     private String producer;
 
-    @Column(name = "note", length=500)
-    private String note;
+    @Column(name = "desciption", length=500)
+    private String desciption;
+
+    @Column(name = "color")
+    private String color;
+
+    @Column(name = "size", length=5)
+    private String size;
+
+    @Column(name = "price" )
+    private Double price;
+
+    @Column(name = "due_date")
+    private LocalDate dueDate;
+
+    @Column(name = "quantity_in_stock")
+    private int quantityInStock;
+
+    @OneToMany(mappedBy="product")
+    private List<Review> reviews = new ArrayList();
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="category_id")
     Category category;
-
-    @OneToMany(mappedBy="product")
-    private List<ProductVariant> productVariants = new ArrayList();
-
-    @OneToMany(mappedBy="product")
-    private List<Review> reviews = new ArrayList();
 
 
 }

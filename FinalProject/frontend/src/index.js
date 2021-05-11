@@ -1,21 +1,18 @@
-//Main React Entry File
 import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
 
-import { store } from './_helpers';
-import { App } from './App';
-/*The boilerplate application uses a fake / mock backend that stores data 
-in browser local storage, to switch to a real backend api simply remove the 
-fake backend code below the comment
-*/
-// setup fake backend
-import { configureFakeBackend } from './_helpers';
-configureFakeBackend();
-
-render(
-    <Provider store={store}>
+ReactDOM.render(
+    <BrowserRouter>
         <App />
-    </Provider>,
-    document.getElementById('app')
+    </BrowserRouter>,
+  document.getElementById('root')
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

@@ -23,7 +23,7 @@ public class Category implements Serializable {
     private long id;
 
     @Column(name = "category_name", nullable = false)
-    private String productName;
+    private String name;
 
     @OneToMany(mappedBy="category")
     private List<Product> products = new ArrayList();
