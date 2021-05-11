@@ -1,5 +1,6 @@
 package miu.edu.ecommerce.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		// configure AuthenticationManager so that it knows from where to load
@@ -52,6 +57,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
+				.logout()
+				.logoutSuccessUrl("/")
+				.invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID")
+				.and()
 				.authorizeRequests()
 				.antMatchers("/").hasAnyAuthority("BUYER", "SELLER", "ADMIN")
 				.antMatchers("/admin").hasAnyAuthority("ADMIN")
@@ -60,6 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/authenticate").permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and().
+
 				// make sure we use stateless session; session won't be used to
 				// store user's state.
 				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
