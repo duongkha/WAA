@@ -1,1 +1,0 @@
-//common page for user registation for Buyer,Seller only select user type.
