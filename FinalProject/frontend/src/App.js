@@ -27,7 +27,30 @@ function App() {
             }
         }>
         <Router>
-            <div className="App">
+            <div className="grid-container">
+            <header className="row">
+            <div>
+                <a className="brand" href="/">
+                amazona
+                </a>
+            </div>
+            <div>
+                <a href="/cart">Cart</a>
+                <li className="nav-item">
+                                    <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
+                                </li>
+            </div>
+            </header>
+        <main>
+          <Route path="/product/:id" component={ProductScreen}></Route>
+          <Route path="/" component={HomeScreen} exact></Route>
+        </main>
+        <footer className="row center">All right reserved</footer>
+      </div>
+            {/* <div className="App">
                 <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                     <div className="container">
                         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -53,7 +76,7 @@ function App() {
                         </Switch>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </Router>
         </APIConfig.Provider>
     );
