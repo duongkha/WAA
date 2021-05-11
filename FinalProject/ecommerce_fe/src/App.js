@@ -6,7 +6,6 @@ import {BrowserRouter as Router, Switch, Route, Link, Redirect, BrowserRouter} f
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 //import {APIConfig} from "./store/API-Config";
-import { signout } from './actions/userActions';
 import Home from "./containers/Home/Home";
 
 
