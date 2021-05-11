@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp/SignUp";
 import {APIConfig} from "./store/API-Config";
 import React from "react";
 import Home from "./containers/Home/Home";
+import store from './store/store';
 
 
 function App() {
