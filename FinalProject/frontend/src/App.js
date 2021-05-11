@@ -1,127 +1,91 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import { signout } from './actions/userActions';
-import AdminRoute from './components/AdminRoute';
-import PrivateRoute from './components/PrivateRoute';
-import CartScreen from './screens/CartScreen';
-import HomeScreen from './screens/HomeScreen';
-import OrderHistoryScreen from './screens/OrderHistoryScreen';
-import OrderScreen from './screens/OrderScreen';
-import PaymentMethodScreen from './screens/PaymentMethodScreen';
-import PlaceOrderScreen from './screens/PlaceOrderScreen';
-import ProductListScreen from './screens/ProductListScreen';
-import ProductScreen from './screens/ProductScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import ShippingAddressScreen from './screens/ShippingAddressScreen';
-import SigninScreen from './screens/SigninScreen';
-import ProductEditScreen from './screens/ProductEditScreen';
-import OrderListScreen from './screens/OrderListScreen';
-import UserListScreen from './screens/UserListScreen';
-import UserEditScreen from './screens/UserEditScreen';
-import SellerRoute from './components/SellerRoute';
-import SellerScreen from './screens/SellerScreen';
-import SearchBox from './components/SearchBox';
-import SearchScreen from './screens/SearchScreen';
-import { listProductCategories } from './actions/productActions';
-import LoadingBox from './components/LoadingBox';
-import MessageBox from './components/MessageBox';
-import MapScreen from './screens/MapScreen';
-import DashboardScreen from './screens/DashboardScreen';
-import SupportScreen from './screens/SupportScreen';
-import ChatBox from './components/ChatBox';
-import Home from './containers/Home/Home';
+//import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link,Redirect } from "react-router-dom";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
+import {APIConfig} from "./store/API-Config";
+import React from "react";
+import Home from "./containers/Home/Home";
+import store from './store/store';
+
 
 function App() {
-  const cart = useSelector((state) => state.cart);
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
-  const { cartItems } = cart;
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
-  const dispatch = useDispatch();
-  const signoutHandler = () => {
-    dispatch(signout());
-  };
-
-  const productCategoryList = useSelector((state) => state.productCategoryList);
-  const {
-    loading: loadingCategories,
-    error: errorCategories,
-    categories,
-  } = productCategoryList;
-  useEffect(() => {
-    dispatch(listProductCategories());
-  }, [dispatch]);
-  return (
-    <BrowserRouter>
-      <div className="grid-container">
-        <header className="row">
-          <div>
-            <button
-              type="button"
-              className="open-sidebar"
-              onClick={() => setSidebarIsOpen(true)}
-            >
-              <i className="fa fa-bars"></i>
-            </button>
-            <Link className="brand" to="/">
-              amazona
-            </Link>
-          </div>
-          <div>
-            <Route
-              render={({ history }) => (
-                <SearchBox history={history}></SearchBox>
-              )}
-            ></Route>
-          </div>
-          <div>
-            <Link to="/cart">
-              Cart
-              {cartItems.length > 0 && (
-                <span className="badge">{cartItems.length}</span>
-              )}
-            </Link>
-            {userInfo ? (
-              <div className="dropdown">
-                <Link to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/profile">User Profile</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderhistory">Order History</Link>
-                  </li>
-                  <li>
-                    <Link to="#signout" onClick={signoutHandler}>
-                      Sign Out
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            ) : (
-              <Link to="/signin">Sign In</Link>
-            )}
-
+    return (
+        <APIConfig.Provider value={
+            {
+                registerAPI: 'http://localhost:8080/register',
+                loginAPI: 'http://localhost:8080/authenticate',
+                logoutAPI: 'http://localhost:8080/logout',
+                productAPI: 'http://localhost:8080/products',
+                orderAPI: 'http://localhost:8080/orders',
+                sellerAPI: 'http://localhost:8080/sellers',
+                categoryAPI: 'http://localhost:8080/categories',
+                roleAPI: 'http://localhost:8080/roles',
+                userAPI: 'http://localhost:8080/user',
+            }
+        }>
+        <Router>
+            <div className="grid-container">
+            <header className="row">
+            <div>
+                <a className="brand" href="/">
+                amazona
+                </a>
+            </div>
+            <div>
+                <Link className="nav-link" to={"/cart"}>Cart</Link>
+                <li className="nav-item">
+                    <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
+                </li>
+            </div>
+            </header>
         <main>
-          <Route path="/seller/:id" component={SellerScreen}></Route>
-          <Route path="/cart/:id?" component={CartScreen}></Route>
-          <Route path="/product/:id" component={ProductScreen} exact></Route>
-
-          <Route path="/signin" component={SigninScreen}></Route>
-
-
-          <Route path="/" component={Home} exact></Route>
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path="/sign-in" component={Login} />
+                <Route path="/sign-up" component={SignUp} />
+                <Redirect from="/" to="/home" />
+            </Switch>
+          {/* <Route path="/product/:id" component={ProductScreen}></Route>
+          <Route path="/" component={HomeScreen} exact></Route> */}
         </main>
-        <footer className="row center">
-          <div>Footer</div>
-        </footer>
+        <footer className="row center">All right reserved</footer>
       </div>
-    </BrowserRouter>
-  );
+            {/* <div className="App">
+                <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+                    <div className="container">
+                        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                            <ul className="navbar-nav ml-auto">
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <div className="auth-wrapper">
+                    <div className="auth-inner">
+                        <Switch>
+                            <Route exact path='/' component={Home} />
+                            <Route path="/sign-in" component={Login} />
+                            <Route path="/sign-up" component={SignUp} />
+                            <Redirect from="/" to="/home" />
+                        </Switch>
+                    </div>
+                </div>
+            </div> */}
+        </Router>
+        </APIConfig.Provider>
+    );
 }
 
 export default App;

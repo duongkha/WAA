@@ -2,19 +2,20 @@ package miu.edu.ecommerce.service;
 
 
 import miu.edu.ecommerce.domain.*;
+import miu.edu.ecommerce.dto.NewUser;
+import miu.edu.ecommerce.dto.UserDTO;
 import miu.edu.ecommerce.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -44,7 +45,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	public String signUpUser(NewUser newUser) {
 		try {
-			if (userRepository.getUserByUsername(newUser.getUsername()) != null) {
+			User u = userRepository.getUserByUsername(newUser.getUsername());
+			if (u!= null) {
 				return "User name is existing.";
 			}
 			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -54,31 +56,35 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			user.setPassword(encryptedPassword);
 			user.setFirstName(newUser.getFirstName());
 			user.setLastName(newUser.getLastName());
-			user.setPhoneNumber(newUser.getPhone());
-			Role role = roleRepository.findRoleById(newUser.getRole());
-			user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findRoleById(newUser.getRole()))));
+			user.setPhoneNumber(newUser.getPhoneNumber());
+			List<Role> roles = roleRepository.findRolesByIdIn(newUser.getRoles().
+												stream().map(r->r.getId()).collect(Collectors.toList()));
+			user.setRoles(new HashSet<>(roles));
 			final User createdUser = userRepository.save(user);
-			switch (newUser.getRole().intValue()){
-				case 1:
-					Admin admin = new Admin();
-					user.setEnabled(true);
-					admin.setUser(user);
-					admin.setLevel("1");
-					adminRepository.save(admin);
-					break;
-				case 2:
-					Seller seller = new Seller();
-					seller.setApproved(false);
-					seller.setUser(user);
-					sellerRepository.save(seller);
-					break;
-				case 3:
-					Buyer buyer = new Buyer();
-					buyer.setAccumulatedPoints(0);
-					buyer.setUser(user);
-					buyerRepository.save(buyer);
-					break;
+			for(Role role:roles){
+				switch ((int) role.getId()){
+					case 1:
+						Admin admin = new Admin();
+						user.setEnabled(true);
+						admin.setUser(user);
+						admin.setLevel("1");
+						adminRepository.save(admin);
+						break;
+					case 2:
+						Seller seller = new Seller();
+						seller.setApproved(false);
+						seller.setUser(user);
+						sellerRepository.save(seller);
+						break;
+					case 3:
+						Buyer buyer = new Buyer();
+						buyer.setAccumulatedPoints(0);
+						buyer.setUser(user);
+						buyerRepository.save(buyer);
+						break;
+				}
 			}
+
 
 			//final ConfirmationToken confirmationToken = new ConfirmationToken(user);
 

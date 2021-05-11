@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4de9d6-3a34-4221-acb3-e9ca6e7ee817" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../ecommerce_fe/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ecommerce_fe/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ecommerce_fe/.idea/azure/azureSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ecommerce_fe/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ecommerce_fe/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ecommerce_fe/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ecommerce_fe/ecommerce_fe.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +22,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
   <component name="ProjectId" id="1sJz8pIF68OQs37H9WlMucrKChU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -35,12 +34,13 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -92,7 +92,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620605324764</updated>
-      <workItem from="1620605327273" duration="4899000" />
+      <workItem from="1620605327273" duration="18643000" />
+      <workItem from="1620753492409" duration="735000" />
     </task>
     <servers />
   </component>
@@ -102,28 +103,6 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
-        <entry key="20cd7dde-efe4-4486-95f1-e6ad249a95d2">
-          <value>
-            <State />
-          </value>
-        </entry>
-        <entry key="319605b4-b4c7-4241-b1f4-72d37771665d">
-          <value>
-            <State />
-          </value>
-        </entry>
-        <entry key="41749eb6-e54d-42cb-ba3f-f93145a89aee">
-          <value>
-            <State />
-          </value>
-        </entry>
-        <entry key="719f1b46-b292-48eb-804f-b69ace6dbcab">
-          <value>
-            <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
-            </State>
-          </value>
-        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -131,11 +110,17 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="719f1b46-b292-48eb-804f-b69ace6dbcab" value="TOOL_WINDOW" />
-      </map>
-    </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/Login/Login.js</url>
+          <line>24</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
