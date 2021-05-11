@@ -35,18 +35,24 @@ function App() {
                 </a>
             </div>
             <div>
-                <a href="/cart">Cart</a>
+                <Link className="nav-link" to={"/cart"}>Cart</Link>
                 <li className="nav-item">
-                                    <Link className="nav-link" to={"/sign-in"}>Login</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
-                                </li>
+                    <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
+                </li>
             </div>
             </header>
         <main>
-          <Route path="/product/:id" component={ProductScreen}></Route>
-          <Route path="/" component={HomeScreen} exact></Route>
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path="/sign-in" component={Login} />
+                <Route path="/sign-up" component={SignUp} />
+                <Redirect from="/" to="/home" />
+            </Switch>
+          {/* <Route path="/product/:id" component={ProductScreen}></Route>
+          <Route path="/" component={HomeScreen} exact></Route> */}
         </main>
         <footer className="row center">All right reserved</footer>
       </div>
