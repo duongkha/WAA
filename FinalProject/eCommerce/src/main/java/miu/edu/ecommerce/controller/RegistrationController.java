@@ -1,7 +1,6 @@
 package miu.edu.ecommerce.controller;
 
-import miu.edu.ecommerce.domain.NewUser;
-import miu.edu.ecommerce.domain.User;
+import miu.edu.ecommerce.dto.NewUser;
 import miu.edu.ecommerce.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegistrationController {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+
     @PostMapping
     public String register(@RequestBody NewUser user){
+
         return userDetailsService.signUpUser(user);
     }
 }

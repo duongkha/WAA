@@ -8,7 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,14 +25,9 @@ public class UserController {
 
     @GetMapping({ "/current" })
     public @ResponseBody UserDTO getCurrentUser() {
-        try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
-            User user = userdetails.getUser();
-            return modelMapper.map(user, UserDTO.class);
-        }catch (Exception ex){
-            throw ex;
-        }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
+        return modelMapper.map(userdetails.getUser(), UserDTO.class);
     }
 
 }
