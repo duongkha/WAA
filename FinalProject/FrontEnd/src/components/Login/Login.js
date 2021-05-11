@@ -28,7 +28,7 @@ export default function Login(props) {
         }).then(response => {
                 localStorage.setItem('token', response.data.token);
                 //alert(response.data.token);
-                props.history.push('/home');
+                props.history.push('/');
             })
             .catch(error => {
                 alert(error.message);

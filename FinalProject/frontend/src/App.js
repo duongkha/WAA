@@ -2,11 +2,12 @@ import logo from './logo.svg';
 import { BrowserRouter } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link,Redirect } from "react-router-dom";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import {APIConfig} from "./store/API-Config";
 import React from "react";
+import Home from "./containers/Home/Home";
 
 
 function App() {
@@ -44,9 +45,10 @@ function App() {
                 <div className="auth-wrapper">
                     <div className="auth-inner">
                         <Switch>
-                            <Route exact path='/' component={Login} />
+                            <Route exact path='/' component={Home} />
                             <Route path="/sign-in" component={Login} />
                             <Route path="/sign-up" component={SignUp} />
+                            <Redirect from="/" to="/home" />
                         </Switch>
                     </div>
                 </div>
