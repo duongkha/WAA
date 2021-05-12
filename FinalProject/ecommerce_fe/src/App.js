@@ -13,6 +13,7 @@ import {LOGOUT, SET_USER} from "./constants/constants";
 import Approval from "./components/Approval/Approval";
 import ProductManager from "./components/ProductManager/ProductManager";
 import Products from './containers/Products/Products';
+import ProductReview from "./components/ProductReview/ProductReview";
 
 
 
@@ -102,13 +103,10 @@ function App() {
                             <Link to="/dashboard">Dashboard</Link>
                           </li>
                           <li>
-                            <Link to="/productlist">Products</Link>
+                            <Link to="/approval">Sellers</Link>
                           </li>
                           <li>
-                            <Link to="/orderlist">Orders</Link>
-                          </li>
-                          <li>
-                            <Link to="/approval">New Sellers</Link>
+                            <Link to="/productreviews">Product Review</Link>
                           </li>
                         </ul>
                       </div>
@@ -141,7 +139,7 @@ function App() {
               </header>
 
               <main>
-
+                <Route path="/productreviews" component={ProductReview}></Route>
                 <Route path="/approval" component={Approval}></Route>
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
