@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { useContext } from 'react';
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
@@ -6,26 +7,29 @@ import {
   CART_SAVE_PAYMENT_METHOD,
   CART_ADD_ITEM_FAIL,
 } from '../constants/constants';
+// import { APIConfig } from '../store/API-Config';
 
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
-  const { data } = await Axios.get(`/api/products/${productId}`);
+  // const APIs = useContext(APIConfig);
+  // const productAPI = APIs.productAPI;
+  const { data } = await Axios.get(`http://localhost:8080/api/products` + '/' + productId);
   const {
     cart: { cartItems },
   } = getState();
-  if (cartItems.length > 0 && data.seller._id !== cartItems[0].seller._id) {
+  if (cartItems.length < 0) {
     dispatch({
       type: CART_ADD_ITEM_FAIL,
-      payload: `Can't Add To Cart. Buy only from ${cartItems[0].seller.seller.name} in this order`,
+      payload: `Can't Add To Cart. `,
     });
   } else {
     dispatch({
       type: CART_ADD_ITEM,
       payload: {
-        name: data.name,
-        image: data.image,
+        name: data.productName,
+        image: data.photo,
         price: data.price,
-        countInStock: data.countInStock,
-        product: data._id,
+        countInStock: data.quantityInStock,
+        product: data.id,
         seller: data.seller,
         qty,
       },
