@@ -1,5 +1,6 @@
 package miu.edu.ecommerce.service;
 
+import miu.edu.ecommerce.domain.Product;
 import miu.edu.ecommerce.domain.Seller;
 import miu.edu.ecommerce.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class SellerServiceImpl implements SellerService{
     @Override
     public Seller getSellerByID(Long id) {
         return sellerRepository.getSellerById(id);
+    }
+
+    @Override
+    public List<Product> getProductsBySellerId(Long id) {
+        return sellerRepository.getProductsBySellerId(id);
     }
 
 

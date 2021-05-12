@@ -33,7 +33,7 @@ public class OrderLine implements Serializable {
     @JoinColumn(name="order_id")
     Order order;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="product_id")
     Product product;
 

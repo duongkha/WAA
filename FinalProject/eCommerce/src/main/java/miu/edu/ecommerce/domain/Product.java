@@ -53,9 +53,11 @@ public class Product implements Serializable {
     @OneToMany(mappedBy="product")
     private List<Review> reviews = new ArrayList();
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id")
     Category category;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="seller_id")
+    Seller seller;
 }
