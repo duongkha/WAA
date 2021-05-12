@@ -7,22 +7,28 @@ import store from "../../store/store";
 
 const Approval = (props)=>{
     const APIs = useContext(APIConfig);
-    //const [sellers,setSellers] = useState({});
+    const [sellers,setSellers] = useState([]);
     const state = store.getState();
-    var  sellers = [];
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + state.oAuthToken,
+    }
     const approveHandler = (seller) => {
-
+        axios(APIs.adminAPI + '/approve?seller=' + seller.id , {headers})
+            .then(response => {
+            if(response.data === true){
+                seller.approved = true;
+            }
+        }).catch(error => {
+            alert(error.message);
+        })
     };
 
     const loadData = ()=>{
-        const headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Authorization': 'Bearer ' + state.oAuthToken,
-        }
         axios(APIs.sellerAPI,{headers})
             .then(response=>{
                 const info = JSON.stringify(response.data);
-                sellers = response.data;
+                setSellers(response.data);
             }).catch(error => {
             alert(error.message);
         })
@@ -38,7 +44,7 @@ return (
            <tr>
                <th>ID</th>
                <th>NAME</th>
-               <th>ACTIONS</th>
+               <th>APPROVED</th>
            </tr>
            </thead>
            <tbody>
@@ -47,22 +53,15 @@ return (
                    <td>{seller.id}</td>
                    <td>{seller.companyName}</td>
                    <td>
-                       <button
-                           type="button"
-                           className="small"
-                           onClick={() =>
-                               props.history.push(`/product/${seller.id}/edit`)
-                           }
-                       >
-                           Edit
-                       </button>
-                       <button
-                           type="button"
-                           className="small"
-                           onClick={() => approveHandler(seller)}
-                       >
-                           Delete
-                       </button>
+                       {!seller.approved && (
+                           <button
+                               type="button"
+                               className="small"
+                               onClick={() => approveHandler(seller)}
+                           >
+                               Approve
+                           </button>
+                       ) }
                    </td>
                </tr>
            ))}

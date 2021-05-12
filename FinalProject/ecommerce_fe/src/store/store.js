@@ -4,6 +4,7 @@ import {GET_USER_INFO, LOGIN_FETCH_SUCCESS, LOGOUT, SET_USER} from "../constants
 
 
 export const INITIAL_STATE = {
+  headers: null,
   oAuthToken: localStorage.getItem('oAuthToken'),
   refreshToken: '',
   userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null
@@ -43,7 +44,9 @@ const AuthReducer =(state =[],action) =>{
     case LOGIN_FETCH_SUCCESS:
       const  oAuthToken  = action.payload;
       localStorage.setItem('oAuthToken',oAuthToken);
-      return { ...state, oAuthToken };
+      return { ...state, headers:{'Access-Control-Allow-Origin': '*',
+                                  'Authorization': 'Bearer ' + action.payload},
+                          oAuthToken:oAuthToken};
 
     default:
       return state;

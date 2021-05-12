@@ -29,6 +29,12 @@ public class SellerController {
         return sellers.stream().map(s->modelMapper.map(s, SellerDTO.class)).collect(Collectors.toList());
     }
 
+    @GetMapping("/notapproved")
+    public List<SellerDTO> getNotApprovedSellers(){
+        List<Seller> sellers = sellerService.getAll();
+        return sellers.stream().filter(s->!s.isApproved()).map(s->modelMapper.map(s, SellerDTO.class)).collect(Collectors.toList());
+    }
+
     @GetMapping("/{id}")
     public SellerDTO getSellerById(@PathVariable("id") Long id){
         Seller seller = sellerService.getSellerByID(id);
