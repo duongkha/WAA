@@ -15,7 +15,7 @@ public interface ReviewRepository extends CrudRepository<Review,Long> {
     Optional<Review> findById(long reviewId);
     Review save(Review review);
 
-    @Query(value = "SELECT r FROM Review r WHERE r.approved <> 1")
+    @Query(value = "SELECT r FROM Review r WHERE r.approved = false")
     List<Review> getReviewsNotApproved();
 
 }

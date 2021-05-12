@@ -29,12 +29,14 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public void approveReview(Long reviewId) {
+    public Boolean approveReview(Long reviewId) {
         Optional<Review> review = reviewRepository.findById(reviewId);
         if(review.isPresent()){
             review.get().setApproved(true);
             reviewRepository.save(review.get());
+            return true;
         }
+        return false;
     }
 
 }

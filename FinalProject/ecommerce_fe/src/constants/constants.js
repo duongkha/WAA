@@ -8,3 +8,4 @@ export const LOGOUT = "LOG_OUT";
 export  const  GET_USER_INFO = "GET_USER_INFO";
 export  const  LOGIN_FETCH_SUCCESS = "LOGIN_FETCH_SUCCESS";
 export  const  SET_USER = "SET_USER";
+export  const  REVIEW_API = "http://localhost:8080/api/reviews";

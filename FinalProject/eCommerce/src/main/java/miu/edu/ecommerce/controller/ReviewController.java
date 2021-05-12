@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("api/reviews")
 public class ReviewController {
@@ -42,9 +43,11 @@ public class ReviewController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("/{reviewId}/approve")
-    public void approveReview(@PathVariable Long reviewId){
-        reviewService.approveReview(reviewId);
+    @GetMapping("/{reviewId}/approve")
+    public Boolean approveReview(@PathVariable Long reviewId){
+
+        return reviewService.approveReview(reviewId);
+
     }
 
 

@@ -12,5 +12,5 @@ public interface ReviewService {
     void createReview(Review review);
     Optional<Review> getReviewById(Long reviewId);
     List<Review> getReviewsNotApproved();
-    void approveReview(Long reviewId);
+    Boolean approveReview(Long reviewId);
 }
