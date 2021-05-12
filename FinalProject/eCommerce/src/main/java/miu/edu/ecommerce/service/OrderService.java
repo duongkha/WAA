@@ -2,7 +2,6 @@ package miu.edu.ecommerce.service;
 
 import miu.edu.ecommerce.domain.Order;
 import miu.edu.ecommerce.domain.OrderLine;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,8 +18,13 @@ public interface OrderService {
     public Order createOrder(Order newOrder);
 
 //    public List<OrderLine> getOrderForBuyer(long orderId);
-
+    List<Order> getAll();
     public List<OrderLine> getOrderLineById(long orderId);
 
+    List<Order> getOrderBySellerId(long sellerId);
+
+    Boolean cancelOrder(long orderId);
+    Boolean shippedOrder(long orderId);
+    Boolean deliveredOrder(long orderId);
 
     }

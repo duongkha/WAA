@@ -40,7 +40,7 @@ const  ProductManager = ()=>{
     }
     useEffect(()=>{
         loadData();
-    });
+    },[]);
     return (
       <div>
           <h1>Product Manager</h1>

@@ -32,7 +32,6 @@ public class Payment implements Serializable {
     @Column(name = "card_holder", nullable = false)
     private String cardHolder;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="payment_method_id")
-    PaymentMethod paymentMethod;
+    @Column(name = "payment_method")
+    private String paymentMethod;
 }

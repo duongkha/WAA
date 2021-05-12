@@ -34,7 +34,7 @@ const  ProductReview = ()=>{
     }
     useEffect(()=>{
         loadData();
-    });
+    },[]);
     return (
       <div>
           <h1>Product Review</h1>

@@ -24,13 +24,13 @@ public class Order implements Serializable {
     @Column(name = "order_id", nullable = false)
     private long id;
 
-    @Column(name = "order_date", nullable = false)
+    @Column(name = "order_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDate orderDate;
 
-    @Column(name = "total_money", nullable = false, columnDefinition = "double default 0.0")
+    @Column(name = "total_money", columnDefinition = "double default 0.0")
     private Double totalMoney;
 
-    @Column(name = "current_status", nullable = false)
+    @Column(name = "current_status", columnDefinition = "VARCHAR(20) DEFAULT 'NEW'")
     private String currentStatus;
 
 
@@ -44,4 +44,8 @@ public class Order implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="payment_id")
     Payment payment;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="shipping_id")
+    Shipping shipping;
 }

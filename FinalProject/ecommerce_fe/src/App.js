@@ -14,14 +14,11 @@ import Approval from "./components/Approval/Approval";
 import ProductManager from "./components/ProductManager/ProductManager";
 import Products from './containers/Products/Products';
 import ProductReview from "./components/ProductReview/ProductReview";
-import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
+import OrderManager from "./components/Seller/OrderManager";
 
 
 
 function App() {
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
-
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [userInfo, setUserInfo ] = useState(null);
 
@@ -74,7 +71,7 @@ function App() {
                 </div>
                   <div>
                     {userInfo && userInfo.isBuyer && (
-                  <Link to="/shoppingcarts">
+                  <Link to="/cart">
                     Cart
                     {/*{cartItems.length > 0 && (*/}
                     {/*    <span className="badge">{cartItems.length}</span>*/}
@@ -148,8 +145,8 @@ function App() {
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
                 <Route path="/productlist/seller" component={ProductManager}></Route>
+                <Route path="/orderlist/seller" component={OrderManager}></Route>
                 <Route path="/product/:id" component={Products} exact></Route>
-                <Route path="/shoppingcarts/:id?" component={ShoppingCart}></Route>
                 {/*<Route path="/shipping" component={ShippingAddressScreen}></Route>*/}
                 {/*<Route path="/payment" component={PaymentMethodScreen}></Route>*/}
                 {/*<Route path="/placeorder" component={PlaceOrderScreen}></Route>*/}
@@ -218,7 +215,7 @@ function App() {
                 <Route path="/" component={Home} exact></Route>
               </main>
               <footer className="row center">
-                <div>Footer</div>{' '}
+                <div>All right reserved</div>{' '}
               </footer>
             </div>
           </BrowserRouter>
