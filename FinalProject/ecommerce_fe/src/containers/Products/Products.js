@@ -18,10 +18,13 @@ export default function Products(props) {
   useEffect(() => {
     const fecthData = async () => {
         try {
-            const { data } = await axios.get(productAPI);
+            const { data } = await axios.get(productAPI + '/' + productId);
             setProduct(data);
-            const productMatch = data.find((x) => x.product.id === props.match.params.id);
-            setProduct(productMatch);
+            console.log("success 1");
+            // const productMatch = data.product.find((x) => x.product.id === productId);
+            // console.log("success 2");
+            // setProduct(productMatch);
+            console.log("success 3");
             console.log(product);
             console.log("Success data");
           } catch (err) {
