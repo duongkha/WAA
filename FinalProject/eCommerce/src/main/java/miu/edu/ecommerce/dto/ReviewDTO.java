@@ -16,5 +16,5 @@ public class ReviewDTO {
     private boolean approved;
 
     private BuyerDTO buyer;
-    private ProductDTO product;
+//    private ProductDTO product;
 }

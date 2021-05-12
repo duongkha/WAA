@@ -33,7 +33,7 @@ public class ShoppingCartLine implements Serializable {
     @JoinColumn(name="cart_id")
     ShoppingCart cart;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="product_id")
     Product product;
 
