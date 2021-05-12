@@ -1,6 +1,8 @@
 package miu.edu.ecommerce.controller;
 
+import miu.edu.ecommerce.domain.Product;
 import miu.edu.ecommerce.domain.Seller;
+import miu.edu.ecommerce.dto.ProductDTO;
 import miu.edu.ecommerce.dto.SellerDTO;
 import miu.edu.ecommerce.service.SellerService;
 import miu.edu.ecommerce.service.SellerServiceImpl;
@@ -34,4 +36,14 @@ public class SellerController {
         Seller seller = sellerService.getSellerByID(id);
         return modelMapper.map(seller, SellerDTO.class);
     }
+    //Get products by seller
+    @GetMapping("/{id}/products")
+    public List<ProductDTO> getProductsBySellerId(@PathVariable("id") Long id){
+        List<Product> products = sellerService.getProductsBySellerId(id);
+        return products.stream()
+                .map(p -> modelMapper.map(p, ProductDTO.class))
+                .collect(Collectors.toList());
+    }
+
+
 }

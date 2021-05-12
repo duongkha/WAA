@@ -32,7 +32,7 @@ public class Payment implements Serializable {
     @Column(name = "card_holder", nullable = false)
     private String cardHolder;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="payment_method_id")
     PaymentMethod paymentMethod;
 }

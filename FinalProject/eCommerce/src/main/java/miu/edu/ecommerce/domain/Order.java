@@ -37,7 +37,7 @@ public class Order implements Serializable {
     @OneToMany(mappedBy="order")
     private List<OrderLine> cartLines = new ArrayList();
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="buyer_id")
     Buyer buyer;
 
