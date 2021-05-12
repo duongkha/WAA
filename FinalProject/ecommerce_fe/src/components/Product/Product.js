@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
-import Products from '../../containers/Products/Products';
+import { Link } from 'react-router-dom';
 
 
 export default function Product(props) {
@@ -10,12 +9,12 @@ export default function Product(props) {
       <Link to={`/product/${product.id}`}>
         <img className="medium" src={product.photo} alt={product.productName} />
       </Link>
-      
+
       <div className="card-body">
         <Link to={`/product/${product.id}`}>
           <h2>{product.name}</h2>
         </Link>
-        {/* <Route path="/product/:id" component={Products} exact></Route> */}
+
         <div className="row">
           <div className="price">${product.price}</div>
           <div>

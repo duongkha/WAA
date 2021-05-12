@@ -3,20 +3,12 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { cartReducer } from '../reducers/cartReducers';
 
+
 export const INITIAL_STATE = {
   headers: null,
   oAuthToken: localStorage.getItem('oAuthToken'),
   refreshToken: '',
-  userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null,
-  cart: {
-    cartItems: localStorage.getItem('cartItems')
-      ? JSON.parse(localStorage.getItem('cartItems'))
-      : [],
-    shippingAddress: localStorage.getItem('shippingAddress')
-      ? JSON.parse(localStorage.getItem('shippingAddress'))
-      : {},
-    paymentMethod: 'PayPal',
-  },
+  userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null
 };
 
 
@@ -64,16 +56,7 @@ const AuthReducer =(state =[],action) =>{
 }
 
 
-const reducer = combineReducers({
-  cart: cartReducer,
-  AuthReducer:AuthReducer,
-});
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  reducer,
-  INITIAL_STATE,
-  composeEnhancer(applyMiddleware(thunk)),
-  )
+const store = createStore(AuthReducer,INITIAL_STATE)
 
 export default store;
