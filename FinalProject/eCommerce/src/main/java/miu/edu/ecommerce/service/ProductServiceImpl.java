@@ -42,4 +42,9 @@ public class ProductServiceImpl implements ProductService{
         List<Review> reviews = productRepository.findReviewsByProductId(productId);
         return reviews.stream().filter(r->r.isApproved()).collect(Collectors.toList());
     }
+
+    @Override
+    public void updateProduct(Product product) {
+        productRepository.save(product);
+    }
 }

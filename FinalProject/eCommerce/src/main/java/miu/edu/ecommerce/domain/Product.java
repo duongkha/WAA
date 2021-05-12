@@ -29,8 +29,8 @@ public class Product implements Serializable {
     @Column(name = "producer")
     private String producer;
 
-    @Column(name = "desciption", length=500)
-    private String desciption;
+    @Column(name = "description", length=500)
+    private String description;
 
     @Column(name = "color")
     private String color;
@@ -49,6 +49,12 @@ public class Product implements Serializable {
 
     @Column(name = "photo")
     private String photo;
+
+    @Column(name = "rating")
+    private Double rating;
+
+    @Column(name = "num_reviews")
+    private Integer numReviews;
 
     @OneToMany(mappedBy="product")
     private List<Review> reviews = new ArrayList();

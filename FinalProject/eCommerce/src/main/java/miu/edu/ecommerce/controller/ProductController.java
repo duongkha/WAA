@@ -49,6 +49,12 @@ public class ProductController {
         productService.createProduct(product);
     }
 
+    @PutMapping()
+    public void updateProduct(@RequestBody Product product){
+        productService.updateProduct(product);
+    }
+
+
     @DeleteMapping(value = "/{productId}")
     public Boolean deleteProduct(@PathVariable Long productId) throws Exception {
         Optional<Product> product =  productService.getProductById(productId);
