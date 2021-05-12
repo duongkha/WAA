@@ -24,10 +24,10 @@ public class ShoppingCart implements Serializable {
     @Column(name = "shopping_id", nullable = false)
     private long id;
 
-    @Column(name = "cart_date", nullable = false)
+    @Column(name = "cart_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDate cartDate;
 
-    @Column(name = "total_money")
+    @Column(name = "total_money", columnDefinition = "Double DEFAULT 0.0")
     private Double totalMoney;
 
     @Column(name = "completed")

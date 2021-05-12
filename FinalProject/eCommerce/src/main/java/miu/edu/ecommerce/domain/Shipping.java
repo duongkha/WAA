@@ -58,7 +58,4 @@ public class Shipping implements Serializable {
     )
     private Address receiverAddress;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="shipping_method_id")
-    PaymentMethod shippingMethod;
 }
