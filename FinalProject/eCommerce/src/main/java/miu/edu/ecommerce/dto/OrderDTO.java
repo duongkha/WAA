@@ -17,5 +17,8 @@ public class OrderDTO {
 
     private String currentStatus;
 
+    private BuyerDTO buyer;
+
+    private PaymentDTO payment;
 
 }

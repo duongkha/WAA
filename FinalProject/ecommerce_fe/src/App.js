@@ -14,6 +14,7 @@ import Approval from "./components/Approval/Approval";
 import ProductManager from "./components/ProductManager/ProductManager";
 import Products from './containers/Products/Products';
 import ProductReview from "./components/ProductReview/ProductReview";
+import OrderManager from "./components/Seller/OrderManager";
 
 
 
@@ -144,6 +145,7 @@ function App() {
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
                 <Route path="/productlist/seller" component={ProductManager}></Route>
+                <Route path="/orderlist/seller" component={OrderManager}></Route>
                 <Route path="/product/:id" component={Products} exact></Route>
                 {/*<Route path="/shipping" component={ShippingAddressScreen}></Route>*/}
                 {/*<Route path="/payment" component={PaymentMethodScreen}></Route>*/}
