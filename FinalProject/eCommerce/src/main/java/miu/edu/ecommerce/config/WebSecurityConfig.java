@@ -64,10 +64,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.deleteCookies("JSESSIONID")
 				.and()
 				.authorizeRequests()
-				.antMatchers("/").hasAnyAuthority("BUYER", "SELLER", "ADMIN")
-				.antMatchers("/admin").hasAnyAuthority("ADMIN")
-				.antMatchers("/seller/**").hasAuthority("SELLER")
-				.antMatchers("/register").permitAll()
+				.antMatchers("/api/").hasAnyAuthority("BUYER", "SELLER", "ADMIN")
+				.antMatchers("/api/users/**").hasAnyAuthority("BUYER", "SELLER", "ADMIN")
+				.antMatchers("/api/admin").hasAnyAuthority("ADMIN")
+				.antMatchers("/api/sellers/**").hasAuthority("SELLER")
+				.antMatchers("/signup").permitAll()
 				.antMatchers("/authenticate").permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and().

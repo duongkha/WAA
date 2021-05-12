@@ -6,7 +6,7 @@ import {GET_USER_INFO, LOGIN_FETCH_SUCCESS, LOGOUT, SET_USER} from "../constants
 export const INITIAL_STATE = {
   oAuthToken: '',
   refreshToken: '',
-  userInfo: localStorage.getItem('userInfo')? localStorage.getItem('userInfo'): null
+  userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null
 };
 
 
@@ -18,9 +18,27 @@ const AuthReducer =(state =[],action) =>{
       localStorage.removeItem('oAuthToken');
       return INITIAL_STATE;
     case SET_USER:
-      const  userInfo  = action.payload;
-      localStorage.setItem('userInfo',action.payload);
-      return {...state, userInfo }
+      let  userInfo  = JSON.parse(action.payload);
+      switch (userInfo.roles[0]["id"]){
+        case 1:
+          userInfo.isSeller = false;
+          userInfo.isAdmin =  true;
+          userInfo.isBuyer = false;
+          break;
+        case 2:
+          userInfo.isSeller = true;
+          userInfo.isAdmin =  false;
+          userInfo.isBuyer = false;
+          break;
+        case 3:
+          userInfo.isSeller = false;
+          userInfo.isAdmin =  false;
+          userInfo.isBuyer = true;
+          break;
+      }
+      const newUserInfo  = JSON.stringify(userInfo);
+      localStorage.setItem('userInfo',newUserInfo);
+      return {...state, newUserInfo }
 
     case LOGIN_FETCH_SUCCESS:
       const  oAuthToken  = action.payload;

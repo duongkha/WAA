@@ -79,6 +79,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 					case 3:
 						Buyer buyer = new Buyer();
 						buyer.setAccumulatedPoints(0);
+						user.setEnabled(true);
 						buyer.setUser(user);
 						buyerRepository.save(buyer);
 						break;

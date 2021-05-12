@@ -1,7 +1,5 @@
 import React, {useContext, useState} from 'react';
 import "./Login.css"
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import {APIConfig} from "../../store/API-Config";
 import {Link} from "react-router-dom";
@@ -39,17 +37,16 @@ export default function Login(props) {
             }
             axios(APIs.userAPI + "/current",{headers})
                 .then(response=>{
+                    const info = JSON.stringify(response.data);
                     dispatch({
                         type: SET_USER,
-                        payload: response.data
+                        payload: info
                     })
-
+                    setUserInfo(state.userInfo);
+                    document.location.href = '/';
                 }).catch(error => {
                 alert(error.message);
             })
-
-            setUserInfo(state.userInfo);
-            props.history.push('/');
         })
             .catch(error => {
                 alert(error.message);

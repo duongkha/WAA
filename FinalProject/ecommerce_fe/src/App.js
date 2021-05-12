@@ -9,6 +9,8 @@ import {APIConfig} from "./store/API-Config";
 import Home from "./containers/Home/Home";
 import {UserInfo} from "./store/AppContext";
 import store from "./store/store";
+import {LOGOUT, SET_USER} from "./constants/constants";
+import Approval from "./components/Approval/Approval";
 
 
 
@@ -18,13 +20,12 @@ function App() {
 
 
   const state = store.getState();
-
   const dispatch = useDispatch();
 
   const signoutHandler = () => {
-    localStorage.removeItem('userInfo');
-    localStorage.removeItem('cartItems');
-    localStorage.removeItem('shippingAddress');
+    dispatch({
+      type: LOGOUT
+    });
     document.location.href = '/';
   };
 
@@ -58,48 +59,21 @@ function App() {
             <div className="grid-container">
               <header className="row">
                 <div>
-                  <button
-                      type="button"
-                      className="open-sidebar"
-                      onClick={() => setSidebarIsOpen(true)}
-                  >
-                    <i className="fa fa-bars"></i>
-                  </button>
+
                   <Link className="brand" to="/">
-                    WAA
+                    Online Market
                   </Link>
                 </div>
-
-                <div>
+                  <div>
+                    {userInfo && userInfo.isBuyer && (
                   <Link to="/cart">
                     Cart
                     {/*{cartItems.length > 0 && (*/}
                     {/*    <span className="badge">{cartItems.length}</span>*/}
                     {/*)}*/}
                   </Link>
-
-                  {userInfo ? (
-                      <div className="dropdown">
-                        <Link to="#">
-                          {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
-                        </Link>
-                        <ul className="dropdown-content">
-                          <li>
-                            <Link to="/profile">User Profile</Link>
-                          </li>
-                          <li>
-                            <Link to="/orderhistory">Order History</Link>
-                          </li>
-                          <li>
-                            <Link to="#signout" onClick={signoutHandler}>
-                              Sign Out
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                  ) : (
-                      <Link to="/signin">Sign In</Link>
                   )}
+
                   {userInfo && userInfo.isSeller && (
                       <div className="dropdown">
                         <Link to="#admin">
@@ -115,7 +89,7 @@ function App() {
                         </ul>
                       </div>
                   )}
-                  {userInfo  && (
+                  {userInfo && userInfo.isAdmin && (
                       <div className="dropdown">
                         <Link to="#admin">
                           Admin <i className="fa fa-caret-down"></i>
@@ -131,42 +105,36 @@ function App() {
                             <Link to="/orderlist">Orders</Link>
                           </li>
                           <li>
-                            <Link to="/userlist">Users</Link>
-                          </li>
-                          <li>
-                            <Link to="/support">Support</Link>
+                            <Link to="/approval">New Sellers</Link>
                           </li>
                         </ul>
                       </div>
                   )}
+                    {userInfo ? (
+                        <div className="dropdown">
+                          <Link to="#">
+                            {userInfo.username} <i className="fa fa-caret-down"></i>{' '}
+                          </Link>
+                          <ul className="dropdown-content">
+                            <li>
+                              <Link to="/profile">User Profile</Link>
+                            </li>
+                            <li>
+                              <Link to="/orderhistory">Order History</Link>
+                            </li>
+                            <li>
+                              <Link to="#signout" onClick={signoutHandler}>
+                                Sign Out
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                    ) : (
+                        <Link to="/signin">Sign In</Link>
+                    )}
                 </div>
               </header>
-              <aside className={sidebarIsOpen ? 'open' : ''}>
-                <ul className="categories">
-                  <li>
-                    <strong>Categories</strong>
-                    <button
-                        onClick={() => setSidebarIsOpen(false)}
-                        className="close-sidebar"
-                        type="button"
-                    >
-                      <i className="fa fa-close"></i>
-                    </button>
-                  </li>
-                  {/*{(*/}
-                  {/*    categories.map((c) => (*/}
-                  {/*        <li key={c}>*/}
-                  {/*          <Link*/}
-                  {/*              to={`/search/category/${c}`}*/}
-                  {/*              onClick={() => setSidebarIsOpen(false)}*/}
-                  {/*          >*/}
-                  {/*            {c}*/}
-                  {/*          </Link>*/}
-                  {/*        </li>*/}
-                  {/*    ))*/}
-                  {/*)}*/}
-                </ul>
-              </aside>
+
               <main>
                 {/*<Route path="/seller/:id" component={SellerScreen}></Route>*/}
                 {/*<Route path="/cart/:id?" component={CartScreen}></Route>*/}
@@ -176,6 +144,7 @@ function App() {
                 {/*    component={ProductEditScreen}*/}
                 {/*    exact*/}
                 {/*></Route>*/}
+                <Route path="/approval" component={Approval}></Route>
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
                 {/*<Route path="/shipping" component={ShippingAddressScreen}></Route>*/}
