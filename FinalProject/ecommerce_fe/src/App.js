@@ -119,9 +119,11 @@ function App() {
                             <li>
                               <Link to="/profile">User Profile</Link>
                             </li>
+                            {userInfo.isBuyer && (
                             <li>
                               <Link to="/orderhistory">Order History</Link>
                             </li>
+                            )}
                             <li>
                               <Link to="#signout" onClick={signoutHandler}>
                                 Sign Out

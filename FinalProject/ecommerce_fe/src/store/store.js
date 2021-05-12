@@ -4,7 +4,7 @@ import {GET_USER_INFO, LOGIN_FETCH_SUCCESS, LOGOUT, SET_USER} from "../constants
 
 
 export const INITIAL_STATE = {
-  oAuthToken: '',
+  oAuthToken: localStorage.getItem('oAuthToken'),
   refreshToken: '',
   userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null
 };
