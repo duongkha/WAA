@@ -1,41 +1,37 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore } from 'redux';
 import { cartReducer } from '../reducers/cartReducers';
+import {GET_USER_INFO, LOGIN_FETCH_SUCCESS, LOGOUT, SET_USER} from "../constants/constants";
 
 
-
-const initialState = {
-  userSignin: {
-    userInfo: localStorage.getItem('userInfo')
-        ? JSON.parse(localStorage.getItem('userInfo'))
-        : null,
-  },
-  cart: {
-    cartItems: localStorage.getItem('cartItems')
-      ? JSON.parse(localStorage.getItem('cartItems'))
-      : [],
-    shippingAddress: localStorage.getItem('shippingAddress')
-      ? JSON.parse(localStorage.getItem('shippingAddress'))
-      : {},
-    paymentMethod: 'PayPal',
-  },
+export const INITIAL_STATE = {
+  oAuthToken: '',
+  refreshToken: '',
+  userInfo: localStorage.getItem('userInfo')? localStorage.getItem('userInfo'): null
 };
-const reducer = combineReducers({
-  cart: cartReducer,
 
-});
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const store = createStore(
-//   //reducer,
-//   initialState//,
-//   //composeEnhancer(applyMiddleware(thunk))
-// );
 
-function userSignin(userInfo) {
-  userInfo =localStorage.getItem('userInfo')
-      ? JSON.parse(localStorage.getItem('userInfo'))
-      : null;
-  return userInfo;
+const AuthReducer =(state =[],action) =>{
+  switch (action.type) {
+
+    case LOGOUT:
+      localStorage.removeItem('userInfo');
+      localStorage.removeItem('oAuthToken');
+      return INITIAL_STATE;
+    case SET_USER:
+      const  userInfo  = action.payload;
+      localStorage.setItem('userInfo',action.payload);
+      return {...state, userInfo }
+
+    case LOGIN_FETCH_SUCCESS:
+      const  oAuthToken  = action.payload;
+      localStorage.setItem('oAuthToken',oAuthToken);
+      return { ...state, oAuthToken };
+
+    default:
+      return state;
+  }
+
 }
-const store = createStore(userSignin)
+const store = createStore(AuthReducer,INITIAL_STATE)
+
 export default store;

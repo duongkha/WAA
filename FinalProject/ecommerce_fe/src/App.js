@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp/SignUp";
 import {APIConfig} from "./store/API-Config";
 import Home from "./containers/Home/Home";
 import {UserInfo} from "./store/AppContext";
+import store from "./store/store";
 
 
 
@@ -15,13 +16,21 @@ function App() {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [userInfo, setUserInfo ] = useState(null);
 
+
+  const state = store.getState();
+
   const dispatch = useDispatch();
+
   const signoutHandler = () => {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('cartItems');
     localStorage.removeItem('shippingAddress');
     document.location.href = '/';
   };
+
+  useEffect(()=>{
+    setUserInfo(state.userInfo);
+  });
 
   // const productCategoryList = useSelector((state) => state.productCategoryList);
   // const {

@@ -6,12 +6,17 @@ import axios from 'axios';
 import {APIConfig} from "../../store/API-Config";
 import {Link} from "react-router-dom";
 import {UserInfo} from "../../store/AppContext";
+import store from "../../store/store";
+import {useDispatch} from "react-redux";
+import {LOGIN_FETCH_SUCCESS, SET_USER} from "../../constants/constants";
 
 export default function Login(props) {
     const APIs = useContext(APIConfig);
     const { userInfo, setUserInfo } = useContext(UserInfo);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const state = store.getState();
+    const dispatch = useDispatch();
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -24,22 +29,26 @@ export default function Login(props) {
             username:email,
             password:password
         }).then(response => {
-           // alert(response.data.token);
-            let info = {};
-            info.token = response.data.token;
-            console.log(info.token);
+            dispatch({
+                type: LOGIN_FETCH_SUCCESS,
+                payload: response.data.token
+            })
             const headers = {
                  'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + info.token,
+                'Authorization': 'Bearer ' + response.data.token,
             }
             axios(APIs.userAPI + "/current",{headers})
                 .then(response=>{
-                    info.userdetails = response.data;
-                   // alert(response.data);
+                    dispatch({
+                        type: SET_USER,
+                        payload: response.data
+                    })
+
                 }).catch(error => {
                 alert(error.message);
             })
-            setUserInfo(info);
+
+            setUserInfo(state.userInfo);
             props.history.push('/');
         })
             .catch(error => {
