@@ -12,7 +12,7 @@ export default function Product(props) {
 
       <div className="card-body">
         <Link to={`/product/${product.id}`}>
-          <h2>{product.name}</h2>
+          <h2>{product.productName}</h2>
         </Link>
 
         <div className="row">
