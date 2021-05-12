@@ -11,6 +11,7 @@ import {UserInfo} from "./store/AppContext";
 import store from "./store/store";
 import {LOGOUT, SET_USER} from "./constants/constants";
 import Approval from "./components/Approval/Approval";
+import Products from './containers/Products/Products';
 
 
 
@@ -150,6 +151,7 @@ function App() {
                 <Route path="/approval" component={Approval}></Route>
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
+                <Route path="/product/:id" component={Products} exact></Route>
                 {/*<Route path="/shipping" component={ShippingAddressScreen}></Route>*/}
                 {/*<Route path="/payment" component={PaymentMethodScreen}></Route>*/}
                 {/*<Route path="/placeorder" component={PlaceOrderScreen}></Route>*/}
