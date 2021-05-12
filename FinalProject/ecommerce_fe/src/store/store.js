@@ -1,6 +1,7 @@
-import { createStore } from 'redux';
-import { cartReducer } from '../reducers/cartReducers';
 import {GET_USER_INFO, LOGIN_FETCH_SUCCESS, LOGOUT, SET_USER} from "../constants/constants";
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import { cartReducer } from '../reducers/cartReducers';
 
 
 export const INITIAL_STATE = {
@@ -53,6 +54,9 @@ const AuthReducer =(state =[],action) =>{
   }
 
 }
+
+
+
 const store = createStore(AuthReducer,INITIAL_STATE)
 
 export default store;
