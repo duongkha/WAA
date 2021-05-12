@@ -18,10 +18,13 @@ export default function Products(props) {
   useEffect(() => {
     const fecthData = async () => {
         try {
-            const { data } = await axios.get(productAPI);
+            const { data } = await axios.get(productAPI + '/' + productId);
             setProduct(data);
-            const productMatch = data.find((x) => x.product.id === props.match.params.id);
-            setProduct(productMatch);
+            console.log("success 1");
+            // const productMatch = data.product.find((x) => x.product.id === productId);
+            // console.log("success 2");
+            // setProduct(productMatch);
+            console.log("success 3");
             console.log(product);
             console.log("Success data");
           } catch (err) {
@@ -88,7 +91,7 @@ export default function Products(props) {
                     <div className="row">
                       <div>Status</div>
                       <div>
-                        {product.countInStock > 0 ? (
+                        {product.quantityInStock > 0 ? (
                           <span className="success">In Stock</span>
                         ) : (
                           <span className="danger">Unavailable</span>
@@ -96,7 +99,7 @@ export default function Products(props) {
                       </div>
                     </div>
                   </li>
-                  {product.countInStock > 0 && (
+                  {product.quantityInStock > 0 && (
                     <>
                       <li>
                         <div className="row">
@@ -106,7 +109,7 @@ export default function Products(props) {
                               value={qty}
                               onChange={(e) => setQty(e.target.value)}
                             >
-                              {[...Array(product.countInStock).keys()].map(
+                              {[...Array(product.quantityInStock).keys()].map(
                                 (x) => (
                                   <option key={x + 1} value={x + 1}>
                                     {x + 1}
