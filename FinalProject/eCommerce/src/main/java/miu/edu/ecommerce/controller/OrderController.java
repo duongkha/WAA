@@ -35,14 +35,14 @@ public class OrderController {
        return orderService.createOrder(order);
     }   //checked
 
-    @PostMapping("/{orderId}")
-    public @ResponseBody OrderDTO cancelOrder(@PathVariable long orderId){
-        Optional<Order> orderOptional = orderService.getOrderById(orderId);
-        if(orderOptional.isPresent()){
-            return modelMapper.map(orderOptional.get(), OrderDTO.class);
-        }
-        return null;
-    }
+//    @PostMapping("/{orderId}")
+//    public @ResponseBody OrderDTO cancelOrder(@PathVariable long orderId){
+//        Optional<Order> orderOptional = orderService.getOrderById(orderId);
+//        if(orderOptional.isPresent()){
+//            return modelMapper.map(orderOptional.get(), OrderDTO.class);
+//        }
+//        return null;
+//    }
 
     public String getOrderStatus(long orderId){
         return orderService.getOrderStatus(orderId);
