@@ -1,13 +1,22 @@
-import { createStore } from 'redux';
-import { cartReducer } from '../reducers/cartReducers';
 import {GET_USER_INFO, LOGIN_FETCH_SUCCESS, LOGOUT, SET_USER} from "../constants/constants";
-
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import { cartReducer } from '../reducers/cartReducers';
 
 export const INITIAL_STATE = {
   headers: null,
   oAuthToken: localStorage.getItem('oAuthToken'),
   refreshToken: '',
-  userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null
+  userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null,
+  cart: {
+    cartItems: localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : [],
+    shippingAddress: localStorage.getItem('shippingAddress')
+      ? JSON.parse(localStorage.getItem('shippingAddress'))
+      : {},
+    paymentMethod: 'PayPal',
+  },
 };
 
 
@@ -53,6 +62,18 @@ const AuthReducer =(state =[],action) =>{
   }
 
 }
-const store = createStore(AuthReducer,INITIAL_STATE)
+
+
+const reducer = combineReducers({
+  cart: cartReducer,
+  AuthReducer:AuthReducer,
+});
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  reducer,
+  INITIAL_STATE,
+  composeEnhancer(applyMiddleware(thunk)),
+  )
 
 export default store;

@@ -40,7 +40,7 @@ export default function Products(props) {
   return (
 
         <div>
-          <Link to="/">Back to result</Link>
+          <Link to="/">Back to home page</Link>
           <div className="row top">
             <div className="col-2">
               <img
