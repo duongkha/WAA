@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -47,14 +48,16 @@ public class OrderController {
 //       return orderService.createOrder(order);
 //    }   //checked
 
-//    @PostMapping("/{orderId}")
-//    public @ResponseBody OrderDTO cancelOrder(@PathVariable long orderId){
-//        Optional<Order> orderOptional = orderService.getOrderById(orderId);
-//        if(orderOptional.isPresent()){
-//            return modelMapper.map(orderOptional.get(), OrderDTO.class);
-//        }
-//        return null;
-//    }
+
+    @GetMapping("/{orderId}/cancel")
+    public @ResponseBody Boolean cancelOrder(@PathVariable long orderId){
+        Optional<Order> orderOptional = orderService.getOrderById(orderId);
+        if(orderOptional.isPresent()){
+            orderOptional.get().setCurrentStatus("CANCELLED");
+            return true;
+        }
+        return false;
+    }
 
     public String getOrderStatus(long orderId){
         return orderService.getOrderStatus(orderId);

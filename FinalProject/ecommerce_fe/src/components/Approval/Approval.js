@@ -35,7 +35,7 @@ const Approval = (props)=>{
     }
     useEffect(()=>{
         loadData();
-    });
+    },[]);
 return (
    <div>
        <h1>List of Sellers</h1>
