@@ -11,6 +11,7 @@ import {UserInfo} from "./store/AppContext";
 import store from "./store/store";
 import {LOGOUT, SET_USER} from "./constants/constants";
 import Approval from "./components/Approval/Approval";
+import ProductManager from "./components/ProductManager/ProductManager";
 
 
 
@@ -139,82 +140,11 @@ function App() {
               </header>
 
               <main>
-                {/*<Route path="/seller/:id" component={SellerScreen}></Route>*/}
-                {/*<Route path="/cart/:id?" component={CartScreen}></Route>*/}
-                {/*<Route path="/product/:id" component={ProductScreen} exact></Route>*/}
-                {/*<Route*/}
-                {/*    path="/product/:id/edit"*/}
-                {/*    component={ProductEditScreen}*/}
-                {/*    exact*/}
-                {/*></Route>*/}
+
                 <Route path="/approval" component={Approval}></Route>
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
-                {/*<Route path="/shipping" component={ShippingAddressScreen}></Route>*/}
-                {/*<Route path="/payment" component={PaymentMethodScreen}></Route>*/}
-                {/*<Route path="/placeorder" component={PlaceOrderScreen}></Route>*/}
-                {/*<Route path="/order/:id" component={OrderScreen}></Route>*/}
-                {/*<Route path="/orderhistory" component={OrderHistoryScreen}></Route>*/}
-                {/*<Route*/}
-                {/*    path="/search/name/:name?"*/}
-                {/*    component={SearchScreen}*/}
-                {/*    exact*/}
-                {/*></Route>*/}
-                {/*<Route*/}
-                {/*    path="/search/category/:category"*/}
-                {/*    component={SearchScreen}*/}
-                {/*    exact*/}
-                {/*></Route>*/}
-                {/*<Route*/}
-                {/*    path="/search/category/:category/name/:name"*/}
-                {/*    component={SearchScreen}*/}
-                {/*    exact*/}
-                {/*></Route>*/}
-                {/*<Route*/}
-                {/*    path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"*/}
-                {/*    component={SearchScreen}*/}
-                {/*    exact*/}
-                {/*></Route>*/}
-                {/*<PrivateRoute*/}
-                {/*    path="/profile"*/}
-                {/*    component={ProfileScreen}*/}
-                {/*></PrivateRoute>*/}
-                {/*<PrivateRoute path="/map" component={MapScreen}></PrivateRoute>*/}
-                {/*<AdminRoute*/}
-                {/*    path="/productlist"*/}
-                {/*    component={ProductListScreen}*/}
-                {/*    exact*/}
-                {/*></AdminRoute>*/}
-                {/*<AdminRoute*/}
-                {/*    path="/productlist/pageNumber/:pageNumber"*/}
-                {/*    component={ProductListScreen}*/}
-                {/*    exact*/}
-                {/*></AdminRoute>*/}
-                {/*<AdminRoute*/}
-                {/*    path="/orderlist"*/}
-                {/*    component={OrderListScreen}*/}
-                {/*    exact*/}
-                {/*></AdminRoute>*/}
-                {/*<AdminRoute path="/userlist" component={UserListScreen}></AdminRoute>*/}
-                {/*<AdminRoute*/}
-                {/*    path="/user/:id/edit"*/}
-                {/*    component={UserEditScreen}*/}
-                {/*></AdminRoute>*/}
-
-                {/*<AdminRoute*/}
-                {/*    path="/dashboard"*/}
-                {/*    component={DashboardScreen}*/}
-                {/*></AdminRoute>*/}
-                {/*<AdminRoute path="/support" component={SupportScreen}></AdminRoute>*/}
-
-                {/*<SellerRoute*/}
-                {/*    path="/productlist/seller"*/}
-                {/*    component={ProductListScreen}*/}
-                {/*></SellerRoute>*/}
-                {/*<SellerRoute*/}
-                {/*    path="/orderlist/seller"*/}
-                {/*    component={OrderListScreen}*/}
-                {/*></SellerRoute>*/}
+                <Route path="/productlist/seller" component={ProductManager}></Route>
 
                 <Route path="/" component={Home} exact></Route>
               </main>
