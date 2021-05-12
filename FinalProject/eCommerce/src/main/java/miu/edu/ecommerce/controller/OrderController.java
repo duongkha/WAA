@@ -2,22 +2,26 @@ package miu.edu.ecommerce.controller;
 
 import miu.edu.ecommerce.domain.*;
 import miu.edu.ecommerce.dto.OrderDTO;
-import miu.edu.ecommerce.service.OrderService;
-import miu.edu.ecommerce.service.PaymentService;
-import miu.edu.ecommerce.service.ShippingService;
-import miu.edu.ecommerce.service.ShoppingCartService;
+import miu.edu.ecommerce.dto.ProductDTO;
+import miu.edu.ecommerce.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
 @RequestMapping("api/orders")
 public class OrderController {
+
+    @Autowired
+    BuyerService buyerService;
 
     @Autowired
     private OrderService orderService;
@@ -42,12 +46,7 @@ public class OrderController {
 
     @GetMapping("/{orderId}/cancel")
     public @ResponseBody Boolean cancelOrder(@PathVariable long orderId){
-        Optional<Order> orderOptional = orderService.getOrderById(orderId);
-        if(orderOptional.isPresent()){
-            orderOptional.get().setCurrentStatus("CANCELLED");
-            return true;
-        }
-        return false;
+        return orderService.cancelOrder(orderId);
     }
 
     public String getOrderStatus(long orderId){
@@ -58,8 +57,19 @@ public class OrderController {
         return orderService.getOrderLineById(orderId);
     }
 
-
-//    public List<OrderLine> getOrderForBuyer(long orderId);
+    @GetMapping
+    public List<OrderDTO> getOrderForBuyer(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
+        Optional<Buyer> buyer =  buyerService.findAll().stream().filter(x->x.getUser().getUsername().equalsIgnoreCase(userdetails.getUsername())).findFirst();
+        if(buyer.isPresent()){
+            List<Order> orders = orderService.getOrderForBuyer(buyer.get().getId());
+            return orders.stream()
+                    .map(p -> modelMapper.map(p, OrderDTO.class))
+                    .collect(Collectors.toList());
+        }
+        return null;
+   }
 
     public void createOrderFromCart(Long cartId, Shipping shipping, Payment payment){
         orderService.createOrderFromCart(cartId,shipping,payment);

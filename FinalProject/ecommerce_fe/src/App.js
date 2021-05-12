@@ -15,6 +15,7 @@ import ProductManager from "./components/ProductManager/ProductManager";
 import Products from './containers/Products/Products';
 import ProductReview from "./components/ProductReview/ProductReview";
 import OrderManager from "./components/Seller/OrderManager";
+import Orders from "./components/Orders/Orders";
 
 
 
@@ -123,7 +124,7 @@ function App() {
                             </li>
                             {userInfo.isBuyer && (
                             <li>
-                              <Link to="/orderhistory">Order History</Link>
+                              <Link to="/orderlist">Order History</Link>
                             </li>
                             )}
                             <li>
@@ -145,6 +146,7 @@ function App() {
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
                 <Route path="/productlist/seller" component={ProductManager}></Route>
+                <Route path="/orderlist" component={Orders}></Route>
                 <Route path="/orderlist/seller" component={OrderManager}></Route>
                 <Route path="/product/:id" component={Products} exact></Route>
                 {/*<Route path="/shipping" component={ShippingAddressScreen}></Route>*/}

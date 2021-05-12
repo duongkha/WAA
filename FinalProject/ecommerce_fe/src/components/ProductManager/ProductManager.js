@@ -16,10 +16,10 @@ const  ProductManager = ()=>{
         axios.delete(APIs.productAPI + "/" + product.id , {headers})
             .then(response => {
                 if(response.data === true){
-                    alert('Deleted');
+                    loadData();
                 }
             }).catch(error => {
-            alert(error.message);
+                alert("Can not delete product!");
         })
     };
 

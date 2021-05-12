@@ -57,6 +57,11 @@ public class OrderServiceImpl implements OrderService {
     } //checked
 
     @Override
+    public List<Order> getOrderForBuyer(long buyerId) {
+        return orderRepository.findAllByBuyerId(buyerId);
+    }
+
+    @Override
     public List<Order> getAll() {
         return orderRepository.findAll();
     }

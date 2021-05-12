@@ -1,10 +1,14 @@
 package miu.edu.ecommerce.controller;
 
+import jdk.nashorn.internal.runtime.options.Option;
 import lombok.val;
+import miu.edu.ecommerce.domain.Buyer;
 import miu.edu.ecommerce.domain.Seller;
 import miu.edu.ecommerce.domain.User;
+import miu.edu.ecommerce.dto.BuyerDTO;
 import miu.edu.ecommerce.dto.SellerDTO;
 import miu.edu.ecommerce.dto.UserDTO;
+import miu.edu.ecommerce.service.BuyerService;
 import miu.edu.ecommerce.service.SellerServiceImpl;
 import miu.edu.ecommerce.service.UserDetailsImpl;
 import miu.edu.ecommerce.service.UserDetailsServiceImpl;
@@ -24,6 +28,9 @@ public class UserController {
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    BuyerService buyerService;
 
     @Autowired
     SellerServiceImpl sellerService;
@@ -47,6 +54,17 @@ public class UserController {
                                 .filter(s -> s.getUser().getUsername().compareToIgnoreCase(userdetails.getUsername()) == 0).findFirst();
         if(seller.isPresent())
             return modelMapper.map(seller.get(), SellerDTO.class);
+        return null;
+    }
+
+    @GetMapping({ "/mybuyerinfo" })
+    public @ResponseBody
+    BuyerDTO getCurrentBuyer() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
+        Optional<Buyer> buyer =  buyerService.findAll().stream().filter(x->x.getUser().getUsername().equalsIgnoreCase(userdetails.getUsername())).findFirst();
+        if(buyer.isPresent())
+            return modelMapper.map(buyer.get(), BuyerDTO.class);
         return null;
     }
 
