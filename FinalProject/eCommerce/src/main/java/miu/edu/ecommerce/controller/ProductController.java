@@ -56,11 +56,12 @@ public class ProductController {
 
 
     @DeleteMapping(value = "/{productId}")
-    public void deleteProduct(@PathVariable Long productId) throws Exception {
+    public Boolean deleteProduct(@PathVariable Long productId) throws Exception {
         Optional<Product> product =  productService.getProductById(productId);
         try{
             if(product.isPresent()){
                 productService.deleteProduct(productId);
+                return true;
             } else{
                 throw new EntityNotFoundException("Product does not exist!");
             }

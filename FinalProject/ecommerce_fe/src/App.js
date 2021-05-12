@@ -11,6 +11,7 @@ import {UserInfo} from "./store/AppContext";
 import store from "./store/store";
 import {LOGOUT, SET_USER} from "./constants/constants";
 import Approval from "./components/Approval/Approval";
+import ProductManager from "./components/ProductManager/ProductManager";
 import Products from './containers/Products/Products';
 
 
@@ -140,17 +141,11 @@ function App() {
               </header>
 
               <main>
-                {/*<Route path="/seller/:id" component={SellerScreen}></Route>*/}
-                {/*<Route path="/cart/:id?" component={CartScreen}></Route>*/}
-                {/*<Route path="/product/:id" component={ProductScreen} exact></Route>*/}
-                {/*<Route*/}
-                {/*    path="/product/:id/edit"*/}
-                {/*    component={ProductEditScreen}*/}
-                {/*    exact*/}
-                {/*></Route>*/}
+
                 <Route path="/approval" component={Approval}></Route>
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
+                <Route path="/productlist/seller" component={ProductManager}></Route>
                 <Route path="/product/:id" component={Products} exact></Route>
                 {/*<Route path="/shipping" component={ShippingAddressScreen}></Route>*/}
                 {/*<Route path="/payment" component={PaymentMethodScreen}></Route>*/}
@@ -217,7 +212,6 @@ function App() {
                 {/*    path="/orderlist/seller"*/}
                 {/*    component={OrderListScreen}*/}
                 {/*></SellerRoute>*/}
-
                 <Route path="/" component={Home} exact></Route>
               </main>
               <footer className="row center">
