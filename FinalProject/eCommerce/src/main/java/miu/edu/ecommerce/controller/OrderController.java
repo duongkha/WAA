@@ -10,26 +10,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("api/orders")
 public class OrderController {
 
     @Autowired
     private OrderService orderService;
-
-    @Autowired
-    private ShippingService shippingService;
-
-    @Autowired
-    private PaymentService paymentService;
-
-    @Autowired
-    private ShoppingCartService shoppingCartService;
-
 
     @Autowired
     ModelMapper modelMapper;
@@ -70,35 +61,8 @@ public class OrderController {
 
 //    public List<OrderLine> getOrderForBuyer(long orderId);
 
-    private OrderLine createOrderLineFromCartLine(ShoppingCartLine cartLine){
-        OrderLine line = new OrderLine();
-        line.setProduct(cartLine.getProduct());
-        line.setPrice(cartLine.getPrice());
-        line.setLineTotal(cartLine.getLineTotal());
-        line.setQuantity(cartLine.getQuantity());
-        return line;
-    }
-    public Order createOrderFromCart(Long cartId, Shipping shipping, Payment payment){
-        Order order = new Order();
-        Shipping shipping1 = shippingService.createShipping(shipping);
-        Payment payment1 = paymentService.createPayment(payment);
-        Optional<ShoppingCart> cart = shoppingCartService.getShoppingCart(cartId);
-        if(cart.isPresent()){
-            ShoppingCart cart1 = cart.get();
-            order.setShipping(shipping1);
-            order.setPayment(payment1);
-            order.setTotalMoney(cart1.getTotalMoney());
-            order.setBuyer(cart1.getBuyer());
-            List<ShoppingCartLine> cartLines = shoppingCartService.getLinesByShoppingCart(cartId);
-            cartLines.forEach(cartline -> {
-                OrderLine orderLine = createOrderLineFromCartLine(cartline);
-                orderLine.setOrder(order);
-            });
-
-            Order order1 = orderService.createOrder(order);
-            return order1;
-        }
-        return null;
+    public void createOrderFromCart(Long cartId, Shipping shipping, Payment payment){
+        orderService.createOrderFromCart(cartId,shipping,payment);
     }
 
 }

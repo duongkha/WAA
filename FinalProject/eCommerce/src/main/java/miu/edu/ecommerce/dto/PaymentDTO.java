@@ -21,5 +21,5 @@ public class PaymentDTO {
 
     private String cardHolder;
 
-    private PaymentMethodDTO paymentMethod;
+    private String paymentMethod;
 }

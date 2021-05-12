@@ -35,27 +35,43 @@ public class Shipping implements Serializable {
     @Column(name = "delivered_date")
     private LocalDate deliveredDate;
 
-    @Embedded
-    @AttributeOverride(
-            name = "street",
-            column = @Column(name = "receiver_street")
-    )
-    @AttributeOverride(
-            name = "city",
-            column = @Column(name = "receiver_city")
-    )
-    @AttributeOverride(
-            name = "state",
-            column = @Column( name = "receiver_state" )
-    )
-    @AttributeOverride(
-            name = "country",
-            column = @Column( name = "receiver_country" )
-    )
-    @AttributeOverride(
-            name = "zipcode",
-            column = @Column( name = "receiver_zipcode" )
-    )
-    private Address receiverAddress;
+    @Column(name = "receiver_street")
+    private String receiverStreet;
+
+    @Column(name = "receiver_city")
+    private String receiverCity;
+
+    @Column(name = "receiver_state")
+    private String receiverState;
+
+    @Column(name = "receiver_country")
+    private String receiverCountry;
+
+    @Column(name = "receiver_zipcode")
+    private String receiverZipcode;
+
+
+//    @Embedded
+//    @AttributeOverride(
+//            name = "street",
+//            column = @Column(name = "receiver_street")
+//    )
+//    @AttributeOverride(
+//            name = "city",
+//            column = @Column(name = "receiver_city")
+//    )
+//    @AttributeOverride(
+//            name = "state",
+//            column = @Column( name = "receiver_state" )
+//    )
+//    @AttributeOverride(
+//            name = "country",
+//            column = @Column( name = "receiver_country" )
+//    )
+//    @AttributeOverride(
+//            name = "zipcode",
+//            column = @Column( name = "receiver_zipcode" )
+//    )
+//    private Address receiverAddress;
 
 }

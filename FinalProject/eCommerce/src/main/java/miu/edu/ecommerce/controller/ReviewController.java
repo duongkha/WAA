@@ -43,7 +43,7 @@ public class ReviewController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{reviewId}/approve")
+    @PutMapping("/{reviewId}/approve")
     public Boolean approveReview(@PathVariable Long reviewId){
 
         return reviewService.approveReview(reviewId);

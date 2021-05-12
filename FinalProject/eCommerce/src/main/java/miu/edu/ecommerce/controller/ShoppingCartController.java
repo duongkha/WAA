@@ -72,10 +72,9 @@ public class ShoppingCartController {
     }
 
 
-
     @PostMapping("/{cartId}/createorder")
-    public Order createOrder(@PathVariable Long cartId, @RequestBody ShippingAndPayment shippingAndPayment) {
-        return orderController.createOrderFromCart(cartId, shippingAndPayment.shipping, shippingAndPayment.payment);
+    public void createOrder(@PathVariable Long cartId, @RequestBody ShippingAndPayment shippingAndPayment) {
+        orderController.createOrderFromCart(cartId, shippingAndPayment.shipping, shippingAndPayment.payment);
 //        return orderService.createOrder(order);
     }   //checked
 
