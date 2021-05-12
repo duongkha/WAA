@@ -25,10 +25,10 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findById(orderId);   //checked
     }
 
-    @Override
-    public Order cancelOrder(long orderId){
-        return orderRepository.cancelOrder(orderId);
-    }
+//    @Override
+//    public Order cancelOrder(long orderId){
+//        return orderRepository.cancelOrder(orderId);
+//    }
 
     @Override
     public String getOrderStatus(long orderId){//checked
@@ -41,12 +41,12 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.save(newOrder);
     } //checked
 
-    @Override
-    public List<OrderLine> getOrderForBuyer(long orderId){
-        List<OrderLine> buyerOrderLine = new ArrayList<OrderLine>();
-        buyerOrderLine = orderRepository.getOrderForBuyer(orderId);
-        return buyerOrderLine;
-    }
+//    @Override
+//    public List<OrderLine> getOrderForBuyer(long orderId){
+//        List<OrderLine> buyerOrderLine = new ArrayList<OrderLine>();
+//        buyerOrderLine = orderRepository.getOrderForBuyer(orderId);
+//        return buyerOrderLine;
+//    }
 
     @Override
     public List<OrderLine> getOrderLineById(long orderId){

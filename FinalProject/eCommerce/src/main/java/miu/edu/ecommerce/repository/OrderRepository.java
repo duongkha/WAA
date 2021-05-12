@@ -9,14 +9,15 @@ import javax.persistence.Column;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
-    @Query("UPDATE Order o SET o.currentStatus = 'Cancelled' WHERE o.id = :orderId")
-    public Order cancelOrder(long orderId);
+//    @Query("UPDATE Order o SET o.currentStatus = 'Cancelled' WHERE o.id = :orderId")
+//    public Order cancelOrder(long orderId);
 
-    public List<OrderLine> getOrderForBuyer(long orderId);
+//    public List<OrderLine> getOrderForBuyer(long orderId);
 
 
 
