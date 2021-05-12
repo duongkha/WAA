@@ -18,6 +18,7 @@ const  ProductReview = ()=>{
             .then(response => {
                 if(response.data === true){
                     review.approved = true;
+                    loadData();
                 }
             }).catch(error => {
                 alert(error.message);
@@ -28,6 +29,7 @@ const  ProductReview = ()=>{
         axios(REVIEW_API + "/notapproved",{headers})
             .then(response=>{
                 setReviews(response.data);
+
             }).catch(error => {
             alert(error.message);
         })

@@ -18,6 +18,7 @@ const Approval = (props)=>{
             .then(response => {
             if(response.data === true){
                 seller.approved = true;
+                loadData();
             }
         }).catch(error => {
             alert(error.message);
