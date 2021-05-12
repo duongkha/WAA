@@ -20,10 +20,10 @@ public class Buyer implements Serializable {
     @Column(name = "buyer_id", nullable = false)
     private long id;
 
-    @Column(name = "accumulated_points")
+    @Column(name = "accumulated_points", columnDefinition = "int default 0")
     private int accumulatedPoints;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     User user;
 

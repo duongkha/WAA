@@ -2,6 +2,8 @@ package miu.edu.ecommerce.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import miu.edu.ecommerce.domain.Category;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ public class ProductDTO {
     private Double price;
     private LocalDate dueDate;
     private int quantityInStock;
-    private List<ReviewDTO> reviews = new ArrayList();
+//    private CategoryDTO category;
+//    private List<ReviewDTO> reviews = new ArrayList();
 
 }

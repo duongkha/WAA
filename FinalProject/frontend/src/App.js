@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import { BrowserRouter } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp/SignUp";
 import {APIConfig} from "./store/API-Config";
 import React from "react";
 import Home from "./containers/Home/Home";
+import store from './store/store';
 
 
 function App() {
@@ -26,7 +27,36 @@ function App() {
             }
         }>
         <Router>
-            <div className="App">
+            <div className="grid-container">
+            <header className="row">
+            <div>
+                <a className="brand" href="/">
+                Shopping
+                </a>
+            </div>
+            <div>
+                <Link className="nav-link" to={"/cart"}>Cart</Link>
+                <li className="nav-item">
+                    <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
+                </li>
+            </div>
+            </header>
+            <main>
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route path="/sign-in" component={Login} />
+                    <Route path="/sign-up" component={SignUp} />
+                    <Redirect from="/" to="/home" />
+                </Switch>
+            {/* <Route path="/product/:id" component={ProductScreen}></Route>
+            <Route path="/" component={HomeScreen} exact></Route> */}
+            </main>
+            <footer className="row center">Footer</footer>
+        </div>
+            {/* <div className="App">
                 <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                     <div className="container">
                         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -52,7 +82,7 @@ function App() {
                         </Switch>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </Router>
         </APIConfig.Provider>
     );

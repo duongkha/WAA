@@ -11,5 +11,5 @@ public interface ProductService {
     Optional<Product> getProductById(Long productId);
     void createProduct(Product product);
     void deleteProduct(Long productId);
-    List<Review> getAllReviewsByProductId(Long productId);
+    List<Review> getApprovedReviewsByProductId(Long productId);
 }

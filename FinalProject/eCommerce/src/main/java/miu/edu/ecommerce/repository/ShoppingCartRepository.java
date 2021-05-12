@@ -21,33 +21,4 @@ public interface ShoppingCartRepository extends CrudRepository<ShoppingCart,Long
     public List<ShoppingCartLine> getLinesByShoppingCard(@Param("cartId") Long cartId);
 
 
-
-//    List<ShoppingCart> shoppingCarts = new ArrayList<>();
-//    public void createShoppingCart(ShoppingCart cart){
-//        shoppingCarts.add(cart);
-//
-//    }
-//
-//    public void addLineToShoppingCart(Long cartId, ShoppingCartLine cartLine){
-//       Optional<ShoppingCart> foundCart = shoppingCarts.stream()
-//                .filter(c -> c.getId() == cartId)
-//               .findFirst();
-//       if(foundCart.isPresent()){
-//           foundCart.get().getCartLines().add(cartLine);
-//       }
-//    }
-//
-//    public void removeLineFromShoppingCart(Long cartId, Long cartLineId){
-//        Optional<ShoppingCart> foundCart = shoppingCarts.stream()
-//                .filter(c -> c.getId() == cartId)
-//                .findFirst();
-//        if(foundCart.isPresent()){
-//            Optional<ShoppingCartLine> foundCartLine = foundCart.get().getCartLines()
-//                    .stream()
-//                    .filter(line -> line.getId() == cartLineId).findFirst();
-//            if(foundCartLine.isPresent()){
-//                foundCart.get().getCartLines().remove(foundCartLine.get());
-//            }
-//        }
-//    }
 }

@@ -4,7 +4,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import {APIConfig} from "../../store/API-Config";
-import {AppContext} from "../../store/GlobalStore";
 
 export default function Login(props) {
     const APIs = useContext(APIConfig);
@@ -26,9 +25,8 @@ export default function Login(props) {
           username:email,
           password:password
         }).then(response => {
-                localStorage.setItem('token', response.data.token);
-                //alert(response.data.token);
-                props.history.push('/');
+                alert(response.data.token);
+                props.history.push('/home');
             })
             .catch(error => {
                 alert(error.message);
