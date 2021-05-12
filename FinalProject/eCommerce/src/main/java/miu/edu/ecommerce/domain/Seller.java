@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -30,4 +32,6 @@ public class Seller implements Serializable {
     @JoinColumn(name="user_id")
     User user;
 
+    @OneToMany(mappedBy="seller")
+    private List<Product> products = new ArrayList();
 }

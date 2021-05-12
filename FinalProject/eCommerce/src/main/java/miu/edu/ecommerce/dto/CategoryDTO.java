@@ -13,5 +13,4 @@ import java.util.List;
 public class CategoryDTO {
     private long id;
     private String name;
-    private List<ProductDTO> products = new ArrayList();
 }

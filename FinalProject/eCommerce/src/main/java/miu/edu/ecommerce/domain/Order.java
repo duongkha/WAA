@@ -27,7 +27,7 @@ public class Order implements Serializable {
     @Column(name = "order_date", nullable = false)
     private LocalDate orderDate;
 
-    @Column(name = "total_money", nullable = false)
+    @Column(name = "total_money", nullable = false, columnDefinition = "double default 0.0")
     private Double totalMoney;
 
     @Column(name = "current_status", nullable = false)
@@ -37,7 +37,7 @@ public class Order implements Serializable {
     @OneToMany(mappedBy="order")
     private List<OrderLine> cartLines = new ArrayList();
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="buyer_id")
     Buyer buyer;
 

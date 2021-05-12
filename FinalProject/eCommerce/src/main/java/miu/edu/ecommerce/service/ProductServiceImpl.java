@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -37,7 +38,8 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Review> getAllReviewsByProductId(Long productId) {
-        return productRepository.findReviewsByProductId(productId);
+    public List<Review> getApprovedReviewsByProductId(Long productId) {
+        List<Review> reviews = productRepository.findReviewsByProductId(productId);
+        return reviews.stream().filter(r->r.isApproved()).collect(Collectors.toList());
     }
 }

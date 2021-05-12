@@ -1,15 +1,20 @@
 import React, {useContext, useState} from 'react';
 import "./Login.css"
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import {APIConfig} from "../../store/API-Config";
+import {Link} from "react-router-dom";
+import {UserInfo} from "../../store/AppContext";
+import store from "../../store/store";
+import {useDispatch} from "react-redux";
+import {LOGIN_FETCH_SUCCESS, SET_USER} from "../../constants/constants";
 
 export default function Login(props) {
     const APIs = useContext(APIConfig);
-
+    const { userInfo, setUserInfo } = useContext(UserInfo);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const state = store.getState();
+    const dispatch = useDispatch();
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -17,16 +22,31 @@ export default function Login(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        const headers = {
-            'Access-Control-Allow-Origin': '*',
 
-        }
         axios.post(APIs.loginAPI, {
             username:email,
             password:password
         }).then(response => {
-            alert(response.data.token);
-            props.history.push('/home');
+            dispatch({
+                type: LOGIN_FETCH_SUCCESS,
+                payload: response.data.token
+            })
+            const headers = {
+                 'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + response.data.token,
+            }
+            axios(APIs.userAPI + "/current",{headers})
+                .then(response=>{
+                    const info = JSON.stringify(response.data);
+                    dispatch({
+                        type: SET_USER,
+                        payload: info
+                    })
+                    setUserInfo(state.userInfo);
+                    document.location.href = '/';
+                }).catch(error => {
+                alert(error.message);
+            })
         })
             .catch(error => {
                 alert(error.message);
@@ -34,29 +54,49 @@ export default function Login(props) {
     }
 
     return (
-        <div className="Login">
-            <Form onSubmit={handleSubmit}>
-                <Form.Group size="lg" controlId="email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        autoFocus
+        <div>
+            <form className="form" onSubmit={handleSubmit}>
+                <div>
+                    <h1>Sign In</h1>
+                </div>
+                {/*{loading && <LoadingBox></LoadingBox>}*/}
+                {/*{error && <MessageBox variant="danger">{error}</MessageBox>}*/}
+                <div>
+                    <label htmlFor="email">Email address</label>
+                    <input
                         type="email"
-                        value={email}
+                        id="email"
+                        placeholder="Enter email"
+                        required
                         onChange={(e) => setEmail(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group size="lg" controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
+                    ></input>
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input
                         type="password"
-                        value={password}
+                        id="password"
+                        placeholder="Enter password"
+                        required
                         onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
-                <Button block size="lg" type="submit" disabled={!validateForm()}>
-                    Login
-                </Button>
-            </Form>
+                    ></input>
+                </div>
+                <div>
+                    <label />
+                    <button className="primary" type="submit">
+                        Sign In
+                    </button>
+                </div>
+                <div>
+                    <label />
+                    <div>
+                        New customer?{' '}
+                        <Link to={`/register`}>
+                            Create your account
+                        </Link>
+                    </div>
+                </div>
+            </form>
         </div>
     );
 }

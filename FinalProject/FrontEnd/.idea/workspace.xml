@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc4de9d6-3a34-4221-acb3-e9ca6e7ee817" name="Default Changelist" comment="" />
+    <list default="true" id="bc4de9d6-3a34-4221-acb3-e9ca6e7ee817" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/src/main/java/miu/edu/ecommerce/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ecommerce_fe/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ecommerce_fe/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ecommerce_fe/src/components/Approval/Approval.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ecommerce_fe/src/components/Approval/Approval.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ecommerce_fe/src/components/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ecommerce_fe/src/components/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ecommerce_fe/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ecommerce_fe/src/store/store.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,19 +62,6 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -90,6 +86,7 @@
       <updated>1620605324764</updated>
       <workItem from="1620605327273" duration="18643000" />
       <workItem from="1620753492409" duration="735000" />
+      <workItem from="1620763040675" duration="607000" />
     </task>
     <servers />
   </component>
