@@ -22,6 +22,7 @@ public class ProductDTO {
     private String size;
     private Double price;
     private Double rating;
+    private String photo;
     private Integer numReviews;
     private LocalDate dueDate;
     private int quantityInStock;

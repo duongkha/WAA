@@ -29,7 +29,7 @@ public class Product implements Serializable {
     @Column(name = "producer")
     private String producer;
 
-    @Column(name = "desciption", length=500)
+    @Column(name = "description", length=500)
     private String description;
 
     @Column(name = "color")
