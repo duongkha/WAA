@@ -34,11 +34,11 @@ public class Review implements Serializable {
     @Column(name = "approved")
     private boolean approved;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name="product_id")
     Product product;
 }

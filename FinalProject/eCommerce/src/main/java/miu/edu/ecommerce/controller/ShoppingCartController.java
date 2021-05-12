@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/shoppingcarts")
+@RequestMapping("api/shoppingcarts")
 public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;

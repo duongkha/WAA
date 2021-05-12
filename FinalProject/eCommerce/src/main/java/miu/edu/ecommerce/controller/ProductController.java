@@ -3,6 +3,7 @@ package miu.edu.ecommerce.controller;
 import miu.edu.ecommerce.domain.Product;
 import miu.edu.ecommerce.domain.Review;
 import miu.edu.ecommerce.dto.ProductDTO;
+import miu.edu.ecommerce.dto.ReviewDTO;
 import miu.edu.ecommerce.dto.SellerDTO;
 import miu.edu.ecommerce.dto.UserDTO;
 import miu.edu.ecommerce.service.ProductService;
@@ -16,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("api/products")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -60,11 +61,14 @@ public class ProductController {
             throw new Exception(e.getMessage());
         }
     }
-
+    //Get approved reviews by product id
     @GetMapping("{productId}/reviews")
     public @ResponseBody
-    List<Review> getAllReviewByProductId(@PathVariable Long productId){
-        return productService.getAllReviewsByProductId(productId);
+    List<ReviewDTO> getApprovedReviewsByProductId(@PathVariable Long productId){
+        List<Review> reviews = productService.getApprovedReviewsByProductId(productId);
+        return reviews.stream()
+                .map(r->modelMapper.map(r,ReviewDTO.class))
+                .collect(Collectors.toList());
     }
 
 }
