@@ -54,6 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			User user = new User();
 			user.setUsername(newUser.getUsername());
 			user.setPassword(encryptedPassword);
+			user.setEmail(newUser.getUsername());
 			user.setFirstName(newUser.getFirstName());
 			user.setLastName(newUser.getLastName());
 			user.setPhoneNumber(newUser.getPhoneNumber());

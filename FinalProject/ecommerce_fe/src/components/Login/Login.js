@@ -91,7 +91,7 @@ export default function Login(props) {
                     <label />
                     <div>
                         New customer?{' '}
-                        <Link to={`/register`}>
+                        <Link to={`/signup`}>
                             Create your account
                         </Link>
                     </div>
