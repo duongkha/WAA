@@ -6,6 +6,7 @@ import miu.edu.ecommerce.domain.Buyer;
 import miu.edu.ecommerce.domain.Seller;
 import miu.edu.ecommerce.domain.User;
 import miu.edu.ecommerce.dto.BuyerDTO;
+import miu.edu.ecommerce.dto.NewUser;
 import miu.edu.ecommerce.dto.SellerDTO;
 import miu.edu.ecommerce.dto.UserDTO;
 import miu.edu.ecommerce.service.BuyerService;
@@ -65,6 +66,14 @@ public class UserController {
         Optional<Buyer> buyer =  buyerService.findAll().stream().filter(x->x.getUser().getUsername().equalsIgnoreCase(userdetails.getUsername())).findFirst();
         if(buyer.isPresent())
             return modelMapper.map(buyer.get(), BuyerDTO.class);
+        return null;
+    }
+
+    @PostMapping("/update")
+    public @ResponseBody  UserDTO updateSellerProfile(@RequestBody  NewUser updateUser){
+        User user = userDetailsService.updateProfile(updateUser);
+        if(user != null)
+            return modelMapper.map(user, UserDTO.class);
         return null;
     }
 

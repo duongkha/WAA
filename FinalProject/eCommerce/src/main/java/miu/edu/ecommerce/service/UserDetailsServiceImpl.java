@@ -3,6 +3,7 @@ package miu.edu.ecommerce.service;
 
 import miu.edu.ecommerce.domain.*;
 import miu.edu.ecommerce.dto.NewUser;
+import miu.edu.ecommerce.dto.SellerDTO;
 import miu.edu.ecommerce.dto.UserDTO;
 import miu.edu.ecommerce.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,25 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 
 		return new UserDetailsImpl(user);
+	}
+
+	public User updateProfile(NewUser updateUser){
+		User user = userRepository.getUserByUsername(updateUser.getUsername());
+		if (user!= null) {
+			if(!updateUser.getPassword().isEmpty()){
+				BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+				final String encryptedPassword = bCryptPasswordEncoder.encode(updateUser.getPassword());
+				user.setPassword(encryptedPassword);
+			}
+
+			user.setFirstName(updateUser.getFirstName());
+			user.setLastName(updateUser.getLastName());
+			user.setPhoneNumber(updateUser.getPhoneNumber());
+			userRepository.save(user);
+			return user;
+		}
+
+		return null;
 	}
 
 	public String signUpUser(NewUser newUser) {
