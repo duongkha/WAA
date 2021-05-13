@@ -124,7 +124,7 @@ function App() {
                             </li>
                             {userInfo.isBuyer && (
                             <li>
-                              <Link to="/orderlist">Order History</Link>
+                              <Link to="/orders">Order History</Link>
                             </li>
                             )}
                             <li>
@@ -146,7 +146,7 @@ function App() {
                 <Route path="/signin" component={Login}></Route>
                 <Route path="/register" component={SignUp}></Route>
                 <Route path="/productlist/seller" component={ProductManager}></Route>
-                <Route path="/orderlist" component={Orders}></Route>
+                <Route path="/orders" component={Orders}></Route>
                 <Route path="/orderlist/seller" component={OrderManager}></Route>
                 <Route path="/product/:id" component={Products} exact></Route>
                 {/*<Route path="/shipping" component={ShippingAddressScreen}></Route>*/}

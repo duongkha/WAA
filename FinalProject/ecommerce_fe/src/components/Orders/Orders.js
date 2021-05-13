@@ -56,7 +56,8 @@ const  Orders = ()=>{
                         <td>{order.totalMoney}</td>
                         <td>{order.currentStatus}</td>
                         <td>
-
+                            {order.currentStatus != "CANCELLED" &&
+                                order.currentStatus != "SHIPPED" && order.currentStatus != "DELIVERED" && (
                             <button
                                 type="button"
                                 className="small"
@@ -64,7 +65,7 @@ const  Orders = ()=>{
                             >
                                 Cancel
                             </button>
-
+                            )}
                         </td>
                     </tr>
                 ))}
