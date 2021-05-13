@@ -58,6 +58,7 @@ function App() {
           roleAPI: 'http://localhost:8080/api/roles',
           userAPI: 'http://localhost:8080/api/users',
           adminAPI: 'http://localhost:8080/api/admin',
+          reviewAPI: 'http://localhost:8080/api/reviews'
         }
       }>
         <UserInfo.Provider value={{ userInfo, setUserInfo }}>

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { APIConfig } from '../../store/API-Config';
 import { Link } from 'react-router-dom';
-
+import Review from '../../components/Review/Review';
 
 export default function Products(props) {
     const APIs = useContext(APIConfig);
@@ -134,6 +134,8 @@ export default function Products(props) {
               </div>
             </div>
           </div>
+        
+        <Review productId = {productId}/>
         </div>
   );
 }

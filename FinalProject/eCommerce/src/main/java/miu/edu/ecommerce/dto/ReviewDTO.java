@@ -2,6 +2,7 @@ package miu.edu.ecommerce.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import miu.edu.ecommerce.domain.User;
 
 import java.time.LocalDate;
 
@@ -15,6 +16,6 @@ public class ReviewDTO {
     private int numberOfStars;
     private boolean approved;
 
-    private BuyerDTO buyer;
+    private UserDTO user;
 //    private ProductDTO product;
 }
