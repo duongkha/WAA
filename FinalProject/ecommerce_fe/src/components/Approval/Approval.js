@@ -52,7 +52,7 @@ return (
            {sellers && sellers.map((seller) => (
                <tr key={seller.id}>
                    <td>{seller.id}</td>
-                   <td>{seller.companyName}</td>
+                   <td>{seller.user.firstName} {seller.user.lastName}</td>
                    <td>
                        {!seller.approved && (
                            <button
