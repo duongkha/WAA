@@ -1,11 +1,14 @@
 package miu.edu.ecommerce.service;
 
 import miu.edu.ecommerce.domain.*;
+import miu.edu.ecommerce.repository.BuyerRepository;
 import miu.edu.ecommerce.repository.OrderLineRepository;
 import miu.edu.ecommerce.repository.OrderRepository;
 import miu.edu.ecommerce.repository.ShoppingCartRepository;
 import org.modelmapper.internal.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,6 +20,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     @Autowired
     private OrderLineRepository orderLineRepository;
@@ -27,6 +32,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PaymentService paymentService;
+
+    @Autowired
+    BuyerRepository buyerRepository;
 
     @Autowired
     private ShoppingCartService shoppingCartService;
@@ -125,6 +133,27 @@ public class OrderServiceImpl implements OrderService {
         return false;
     }
 
+    void sendEmail(String emailAddress, Order order) {
+        try {
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(emailAddress, emailAddress);
+
+            msg.setSubject("Purchase successfully");
+            String content = "";
+            content += order.getId() + "\n";
+            content += order.getOrderDate().toString() + "\n";
+            content += order.getPayment().getPaymentMethod() + "\n";
+            content += order.getTotalMoney().toString() + "\n";
+            content += order.getShipping().toString() + "\n";
+            content += "THANK YOU FOR SHOPPING.";
+            msg.setText(content);
+
+            javaMailSender.send(msg);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
     public void createOrderFromCart(Long cartId, Shipping shipping, Payment payment){
         Order order = new Order();
         Shipping shipping1 = shippingService.createShipping(shipping);
@@ -148,7 +177,12 @@ public class OrderServiceImpl implements OrderService {
             Order order1 = orderRepository.save(order);
 
             cart1.setCompleted(true);
+            Buyer buyer = cart1.getBuyer();
+            buyer.setAccumulatedPoints(buyer.getAccumulatedPoints() + 10);
+            buyerRepository.save(buyer);//gain point for buyer.
+
             shoppingCartRepository.save(cart1);
+            sendEmail(buyer.getUser().getEmail(),order1);
         }
     }
 
