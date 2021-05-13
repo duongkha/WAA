@@ -3,6 +3,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {APIConfig} from "../../store/API-Config";
 import store from "../../store/store";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const  Orders = ()=>{
     const APIs = useContext(APIConfig);
@@ -17,6 +18,19 @@ const  Orders = ()=>{
             .then(response => {
                 if(response.data === true){
                     loadData();
+                }
+            }).catch(error => {
+            alert(error.message);
+        })
+    };
+
+    const pdfHandler = () => {
+        axios(APIs.orderAPI + "/export/pdf", {responseType: 'arraybuffer',headers})
+            .then(response => {
+                if(response.data){
+                    const fileURL = URL.createObjectURL( new Blob([response.data], { type: "application/pdf" }));
+
+                    window.open(fileURL, "_blank");
                 }
             }).catch(error => {
             alert(error.message);
@@ -38,6 +52,13 @@ const  Orders = ()=>{
     return (
         <div>
             <h1>List Of Orders</h1>
+            <button
+                type="button"
+                className="small"
+                onClick={() => pdfHandler()}
+            >
+                Download PDF
+            </button>
             <table className="table">
                 <thead>
                 <tr>
