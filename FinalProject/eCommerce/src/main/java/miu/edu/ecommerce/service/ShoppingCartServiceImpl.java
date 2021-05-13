@@ -95,4 +95,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
         }
     }
 
+    @Override
+    public Optional<ShoppingCart> getShoppingCartByBuyerNotCompleted(Long buyerId) {
+        return shoppingCartRepository.getShoppingCartByBuyerNotCompleted(buyerId);
+    }
+
 }

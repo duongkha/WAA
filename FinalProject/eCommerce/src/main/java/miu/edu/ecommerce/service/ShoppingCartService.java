@@ -16,4 +16,5 @@ public interface ShoppingCartService {
     Optional<ShoppingCart> getShoppingCart(Long cartId);
     void updateLineInShoppingCart(Long cartId, ShoppingCartLine newCartLine);
     void updateQuantityInShoppingCartLine(Long cartId,Long lineId,Integer newQuantity);
+    Optional<ShoppingCart> getShoppingCartByBuyerNotCompleted(Long buyerId);
 }

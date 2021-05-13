@@ -39,7 +39,6 @@ public class ShoppingCartController {
         return null;
     }
 
-
     @GetMapping("/{cartId}/cartlines")
     public List<ShoppingCartLineDTO> getLinesFromShoppingCart(@PathVariable Long cartId){
         List<ShoppingCartLine> cartLines = shoppingCartService.getLinesByShoppingCart(cartId);
