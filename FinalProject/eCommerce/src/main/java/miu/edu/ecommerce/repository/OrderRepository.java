@@ -14,7 +14,7 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 //    @Query(value = "UPDATE Order o SET o.currentStatus = 'Cancelled' WHERE o.id = :orderId")
 //    public Order cancelOrder(long orderId);
 
-//    public List<OrderLine> getOrderForBuyer(long orderId);
+        public List<Order> findAllByBuyerId(long buyerId);
         public Optional<Order> findById(Long Id);
         public  List<Order> findAll();
 

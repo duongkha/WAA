@@ -21,7 +21,7 @@ public class OrderDTO {
     private LocalDate orderDate;
     private Double totalMoney;
     private String currentStatus;
-//    private BuyerDTO buyer;
+    private BuyerDTO buyer;
     private PaymentDTO payment;
     private ShippingDTO shipping;
     private List<OrderLineDTO> cartLines = new ArrayList();

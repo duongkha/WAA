@@ -19,7 +19,7 @@ public interface OrderService {
 
     public Order createOrder(Order newOrder);
 
-//    public List<OrderLine> getOrderForBuyer(long orderId);
+    List<Order> getOrderForBuyer(long buyerId);
     List<Order> getAll();
     public List<OrderLine> getOrderLineById(long orderId);
 
