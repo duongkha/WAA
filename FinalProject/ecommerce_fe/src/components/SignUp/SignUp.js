@@ -113,8 +113,9 @@ const SignUp = (props)=>{
                     <label htmlFor="User type">User type</label>
 
                     <select name="user" id="user" onChange={(e) => setUserRole(e.target.value)}>
-                        <option value="2">Seller</option>
+                        <option value=""> </option>
                         <option value="3">Buyer</option>
+                        <option value="2">Seller</option>
                     </select>
                 </div>
 
