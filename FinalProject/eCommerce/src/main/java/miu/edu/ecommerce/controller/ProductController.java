@@ -2,13 +2,19 @@ package miu.edu.ecommerce.controller;
 
 import miu.edu.ecommerce.domain.Product;
 import miu.edu.ecommerce.domain.Review;
+import miu.edu.ecommerce.domain.Seller;
 import miu.edu.ecommerce.dto.ProductDTO;
 import miu.edu.ecommerce.dto.ReviewDTO;
 import miu.edu.ecommerce.dto.SellerDTO;
 import miu.edu.ecommerce.dto.UserDTO;
 import miu.edu.ecommerce.service.ProductService;
+import miu.edu.ecommerce.service.SellerService;
+import miu.edu.ecommerce.service.UserDetailsImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -22,6 +28,8 @@ import java.util.stream.Collectors;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+
 
     @Autowired
     ModelMapper modelMapper;
@@ -44,12 +52,16 @@ public class ProductController {
         return null;
     }
 
-    @PostMapping()
-    public void createProduct(@RequestBody Product product){
-        productService.createProduct(product);
+    @PostMapping("/new")
+    @PreAuthorize("hasAutority('SELLER')")
+    public Boolean createProduct(@RequestBody ProductDTO productDTO){
+        Product product = modelMapper.map(productDTO, Product.class);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
+        return productService.createProduct(product, userdetails.getUser().getId());
     }
 
-    @PutMapping()
+    @PutMapping("")
     public void updateProduct(@RequestBody Product product){
         productService.updateProduct(product);
     }

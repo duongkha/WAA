@@ -3,6 +3,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {APIConfig} from "../../store/API-Config";
 import store from "../../store/store";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const  ProductManager = ()=>{
     const APIs = useContext(APIConfig);
@@ -44,6 +45,7 @@ const  ProductManager = ()=>{
     return (
       <div>
           <h1>Product Manager</h1>
+          <Link to="/newproduct">Add Product</Link>
           <table className="table">
               <thead>
               <tr>

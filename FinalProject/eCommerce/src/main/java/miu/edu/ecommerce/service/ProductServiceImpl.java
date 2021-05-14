@@ -2,7 +2,10 @@ package miu.edu.ecommerce.service;
 
 import miu.edu.ecommerce.domain.Product;
 import miu.edu.ecommerce.domain.Review;
+import miu.edu.ecommerce.domain.Seller;
 import miu.edu.ecommerce.repository.ProductRepository;
+import miu.edu.ecommerce.repository.SellerRepository;
+import miu.edu.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,9 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    SellerRepository sellerRepository;
+
 
     @Override
     public List<Product> getAll() {
@@ -28,8 +34,18 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void createProduct(Product product) {
-        productRepository.save(product);
+    public Boolean createProduct(Product product, Long userId) {
+        try {
+            Seller seller = sellerRepository.getSellerByUserId(userId);
+            if(seller != null){
+                product.setSeller(seller);
+                productRepository.save(product);
+                return true;
+            }
+            return false;
+        }catch (Exception ex){
+            return false;
+        }
     }
 
     @Override

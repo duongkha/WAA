@@ -17,6 +17,7 @@ import ProductReview from "./components/ProductReview/ProductReview";
 import OrderManager from "./components/Seller/OrderManager";
 import Orders from "./components/Orders/Orders";
 import Profile from "./components/Profile/Profile";
+import AddProduct from "./components/AddProduct/AddProduct";
 
 
 
@@ -143,6 +144,7 @@ function App() {
               </header>
 
               <main>
+                <Route path="/newproduct" component={AddProduct}></Route>
                 <Route path="/profile" component={Profile}></Route>
                 <Route path="/productreviews" component={ProductReview}></Route>
                 <Route path="/approval" component={Approval}></Route>

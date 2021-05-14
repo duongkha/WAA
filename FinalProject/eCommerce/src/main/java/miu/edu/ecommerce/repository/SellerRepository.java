@@ -17,4 +17,6 @@ public interface SellerRepository extends CrudRepository<Seller,Long> {
 
     @Query(value = "SELECT s.products FROM Seller s WHERE s.id = :id")
     List<Product> getProductsBySellerId(@Param("id") Long id);
+
+    public Seller getSellerByUserId(@Param("userId") Long id);
 }
