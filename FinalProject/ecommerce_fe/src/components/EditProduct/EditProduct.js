@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {APIConfig} from "../../store/API-Config";
 import axios from "axios";
 import store from "../../store/store";
+import {Link} from "react-router-dom";
 
 const EditProduct = (props) =>{
     const APIs = useContext(APIConfig);
@@ -154,12 +155,15 @@ const EditProduct = (props) =>{
                       <option value="5">Furniture</option>
                   </select>
               </div>
-              <button className="primary" >
-                  Cancel
-              </button>
+              <Link to="/productlist/seller">
+                  <button className="primary" >
+                      Cancel
+                  </button>
+              </Link>
               <button className="primary" type="submit">
                   Update
               </button>
+
 
           </form>
           )}

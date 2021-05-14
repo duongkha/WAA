@@ -121,9 +121,11 @@ const AddProduct = () =>{
                       <option value="5">Furniture</option>
                   </select>
               </div>
-              <button className="primary" >
-                  Cancel
-              </button>
+              <Link to="/productlist/seller">
+                  <button className="primary" >
+                      Cancel
+                  </button>
+              </Link>
               <button className="primary" type="submit">
                   Add
               </button>
