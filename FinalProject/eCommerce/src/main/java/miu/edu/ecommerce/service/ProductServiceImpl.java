@@ -60,10 +60,15 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Boolean updateProduct(Product product) {
+    public Boolean updateProduct(Product product, Long userId) {
         try {
-            productRepository.save(product);
-            return true;
+            Seller seller = sellerRepository.getSellerByUserId(userId);
+            if(seller != null){
+                product.setSeller(seller);
+                productRepository.save(product);
+                return true;
+            }
+            return false;
         }catch (Exception ex){
             return false;
         }

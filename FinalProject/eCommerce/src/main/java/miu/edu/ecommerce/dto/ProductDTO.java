@@ -27,7 +27,7 @@ public class ProductDTO {
     private LocalDate dueDate;
     private int quantityInStock;
     private CategoryDTO category;
-//    private SellerDTO seller;
+    //private SellerDTO seller;
 //    private List<ReviewDTO> reviews = new ArrayList();
 
 }

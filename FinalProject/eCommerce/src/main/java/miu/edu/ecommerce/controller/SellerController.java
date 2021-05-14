@@ -91,6 +91,8 @@ public class SellerController {
     @PostMapping("/updateproduct")
     public Boolean updateProduct(@RequestBody ProductDTO productDTO){
         Product product = modelMapper.map(productDTO, Product.class);
-        return productService.updateProduct(product);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
+        return productService.updateProduct(product, userdetails.getUser().getId());
     }
 }

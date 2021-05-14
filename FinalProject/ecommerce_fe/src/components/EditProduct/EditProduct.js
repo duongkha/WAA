@@ -33,7 +33,6 @@ const EditProduct = (props) =>{
             price: price,
             color: color,
             quantityInStock: quantityInStock,
-            seller:{id:product.seller.id},
             category: {
                 id: category
             }
@@ -117,7 +116,7 @@ const EditProduct = (props) =>{
                       placeholder="Enter color"
                       required
                       onChange={(e) => setColor(e.target.value)}
-                      defaultValue={product.size}
+                      defaultValue={product.color}
                   ></input>
               </div>
               <div>

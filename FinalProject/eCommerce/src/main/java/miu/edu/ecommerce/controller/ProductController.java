@@ -62,8 +62,11 @@ public class ProductController {
     }
 
     @PutMapping("")
-    public void updateProduct(@RequestBody Product product){
-        productService.updateProduct(product);
+    public void updateProduct(@RequestBody ProductDTO productDTO){
+        Product product = modelMapper.map(productDTO, Product.class);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
+        productService.updateProduct(product, userdetails.getUser().getId());
     }
 
 

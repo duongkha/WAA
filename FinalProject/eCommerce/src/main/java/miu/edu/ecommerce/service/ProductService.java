@@ -13,5 +13,5 @@ public interface ProductService {
     Boolean createProduct(Product product, Long userId);
     void deleteProduct(Long productId);
     List<Review> getApprovedReviewsByProductId(Long productId);
-    Boolean updateProduct(Product product);
+    Boolean updateProduct(Product product, Long userId);
 }
