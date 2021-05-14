@@ -54,13 +54,13 @@ const Review = (props) => {
     }
 
     return (
-        <div class="card">
-            <div class="card-header">Product Reviews</div>
-            <div class="card-body">
+        <div className="card">
+            <div className="card-header">Product Reviews</div>
+            <div className="card-body">
                 {reviews && reviews.map((review) => (
                     <div>
                         <p>{review.content}</p>
-                        <small class="text-muted">Posted by {review.user.firstName} {review.user.lastName} on {review.date}</small>
+                        <small className="text-muted">Posted by {review.user.firstName} {review.user.lastName} on {review.date}</small>
                         <hr />
                     </div>
                 ))}
@@ -68,7 +68,7 @@ const Review = (props) => {
                 ? 
                     <div>
                         {!showReviewForm &&
-                        <button onClick={onLeaveReviewHandler} class="btn btn-success" href="">Leave a Review</button>}
+                        <button onClick={onLeaveReviewHandler} className="btn btn-success" href="">Leave a Review</button>}
 
                         {showReviewForm &&
                         <form> 

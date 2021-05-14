@@ -135,7 +135,7 @@ export default function Products(props) {
             </div>
           </div>
         
-        <Review productId = {productId}/>
+        <Review key={productId} productId = {productId}/>
         </div>
   );
 }
