@@ -23,7 +23,7 @@ const AddProduct = () =>{
     function handleSubmit(event) {
         event.preventDefault();
 
-        axios.post(APIs.productAPI + "/new", {
+        axios.post(APIs.sellerAPI + "/newproduct", {
             productName: productName,
             producer: producer,
             description: description,

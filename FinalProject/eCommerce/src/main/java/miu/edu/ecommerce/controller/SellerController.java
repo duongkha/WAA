@@ -7,11 +7,12 @@ import miu.edu.ecommerce.domain.Seller;
 import miu.edu.ecommerce.dto.OrderDTO;
 import miu.edu.ecommerce.dto.ProductDTO;
 import miu.edu.ecommerce.dto.SellerDTO;
-import miu.edu.ecommerce.service.OrderService;
-import miu.edu.ecommerce.service.SellerService;
-import miu.edu.ecommerce.service.SellerServiceImpl;
+import miu.edu.ecommerce.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/sellers")
 public class SellerController {
+    @Autowired
+    private ProductService productService;
     @Autowired
     SellerService sellerService;
     @Autowired
@@ -77,4 +80,11 @@ public class SellerController {
         return orderService.deliveredOrder(orderId);
     }
 
+    @PostMapping("/newproduct")
+    public Boolean createProduct(@RequestBody ProductDTO productDTO){
+        Product product = modelMapper.map(productDTO, Product.class);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
+        return productService.createProduct(product, userdetails.getUser().getId());
+    }
 }
