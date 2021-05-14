@@ -55,7 +55,7 @@ const EditProduct = (props) =>{
                 setDescription(p.description);
                 setSize(p.size);
                 setPrice(p.price);
-                setColor(p.colo);
+                setColor(p.color);
                 setQuantityInStock(p.quantityInStock);
                 setCategory(p.category.id);
             }).catch(error => {
