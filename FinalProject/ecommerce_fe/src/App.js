@@ -18,6 +18,7 @@ import OrderManager from "./components/Seller/OrderManager";
 import Orders from "./components/Orders/Orders";
 import Profile from "./components/Profile/Profile";
 import AddProduct from "./components/AddProduct/AddProduct";
+import EditProduct from "./components/EditProduct/EditProduct";
 
 
 
@@ -145,6 +146,7 @@ function App() {
 
               <main>
                 <Route path="/newproduct" component={AddProduct}></Route>
+                <Route path='/editproduct/:id' exact component={EditProduct} />
                 <Route path="/profile" component={Profile}></Route>
                 <Route path="/productreviews" component={ProductReview}></Route>
                 <Route path="/approval" component={Approval}></Route>

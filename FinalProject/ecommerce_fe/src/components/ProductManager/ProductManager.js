@@ -70,13 +70,14 @@ const  ProductManager = ()=>{
                       <td>{product.size}</td>
                       <td>{product.price}</td>
                       <td>
+                          <Link to={"/editproduct/"+product.id} >
                               <button
                                   type="button"
                                   className="small"
-                                  onClick={() =>{}}
                               >
                                   Edit
                               </button>
+                          </Link>
                           <button
                               type="button"
                               className="small"

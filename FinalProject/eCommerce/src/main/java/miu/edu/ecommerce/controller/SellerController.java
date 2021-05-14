@@ -87,4 +87,10 @@ public class SellerController {
         UserDetailsImpl userdetails = (UserDetailsImpl) auth.getPrincipal();
         return productService.createProduct(product, userdetails.getUser().getId());
     }
+
+    @PostMapping("/updateproduct")
+    public Boolean updateProduct(@RequestBody ProductDTO productDTO){
+        Product product = modelMapper.map(productDTO, Product.class);
+        return productService.updateProduct(product);
+    }
 }

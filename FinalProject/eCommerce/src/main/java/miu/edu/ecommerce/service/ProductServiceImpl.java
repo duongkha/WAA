@@ -60,7 +60,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void updateProduct(Product product) {
-        productRepository.save(product);
+    public Boolean updateProduct(Product product) {
+        try {
+            productRepository.save(product);
+            return true;
+        }catch (Exception ex){
+            return false;
+        }
     }
 }
