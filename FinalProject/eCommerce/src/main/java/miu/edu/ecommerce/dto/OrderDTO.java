@@ -19,6 +19,7 @@ public class OrderDTO {
     private long id;
 
     private LocalDate orderDate;
+    private Integer totalQuantity;
     private Double totalMoney;
     private String currentStatus;
     private BuyerDTO buyer;

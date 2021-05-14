@@ -16,6 +16,7 @@ public class ShoppingCartDTO {
 
     private long id;
     private LocalDate cartDate;
+    private Integer totalQuantity;
     private Double totalMoney;
     private boolean completed;
     private List<ShoppingCartLineDTO> cartLines = new ArrayList();

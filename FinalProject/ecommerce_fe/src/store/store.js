@@ -1,4 +1,4 @@
-import {GET_USER_INFO, LOGIN_FETCH_SUCCESS, LOGOUT, SET_USER} from "../constants/constants";
+import {GET_USER_INFO, LOGIN_FETCH_SUCCESS, LOGOUT, SET_USER, SET_CART} from "../constants/constants";
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { cartReducer } from '../reducers/cartReducers';
@@ -8,7 +8,8 @@ export const INITIAL_STATE = {
   headers: null,
   oAuthToken: localStorage.getItem('oAuthToken'),
   refreshToken: '',
-  userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null
+  userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null,
+  cartInfo: localStorage.getItem('cartInfo')? JSON.parse(localStorage.getItem('cartInfo')): null
 };
 
 
@@ -18,6 +19,7 @@ const AuthReducer =(state =[],action) =>{
     case LOGOUT:
       localStorage.removeItem('userInfo');
       localStorage.removeItem('oAuthToken');
+      localStorage.removeItem('cartInfo');
       return INITIAL_STATE;
     case SET_USER:
       let  userInfo  = JSON.parse(action.payload);
@@ -40,6 +42,8 @@ const AuthReducer =(state =[],action) =>{
       }
       const newUserInfo  = JSON.stringify(userInfo);
       localStorage.setItem('userInfo',newUserInfo);
+      // console.log("dispatch");
+      // console.log(newUserInfo);
       return {...state, newUserInfo }
 
     case LOGIN_FETCH_SUCCESS:
@@ -48,6 +52,14 @@ const AuthReducer =(state =[],action) =>{
       return { ...state, headers:{'Access-Control-Allow-Origin': '*',
                                   'Authorization': 'Bearer ' + action.payload},
                           oAuthToken:oAuthToken};
+    case SET_CART:
+      let cartInfo = action.payload;
+      // console.log("dispatch");
+      // console.log(localStorage.getItem('cartInfo'));
+      // console.log("dispatch");
+      // console.log(localStorage.getItem('userInfo'));
+      localStorage.setItem('cartInfo',cartInfo);
+      return {...state }
 
     default:
       return state;

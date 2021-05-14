@@ -29,13 +29,37 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
         Optional<ShoppingCart> cart =  shoppingCartRepository.findById(cartId);
         if(cart.isPresent()){
             ShoppingCart foundCart = cart.get();
-            foundCart.setTotalMoney(foundCart.getTotalMoney() + cartline.getLineTotal());
-            cartline.setCart(foundCart);
-            shoppingCartRepository.save(foundCart);
-            shoppingCartLineRepository.save(cartline);
+            Optional<ShoppingCartLine> oldCartLine =  foundCart.getCartLines().stream().filter(p->p.getProduct().getId()==cartline.getProduct().getId()).findFirst();
+
+            //check if Product exists in cart
+            if (oldCartLine.isPresent()) {
+                ShoppingCartLine foundCartLine = oldCartLine.get();
+                foundCartLine.setQuantity(foundCartLine.getQuantity() + cartline.getQuantity());
+                foundCartLine.setLineTotal(foundCartLine.getLineTotal() + cartline.getQuantity()*foundCartLine.getPrice());
+                shoppingCartLineRepository.save(foundCartLine);
+            }
+            else{
+                foundCart.setTotalMoney(foundCart.getTotalMoney() + cartline.getLineTotal());
+                foundCart.setTotalQuantity(foundCart.getTotalQuantity() + cartline.getQuantity());
+                cartline.setCart(foundCart);
+                shoppingCartRepository.save(foundCart);
+                shoppingCartLineRepository.save(cartline);
+            }
+            calculateTotalInShoppingCart(cartId);
         }
     }
 
+    private void calculateTotalInShoppingCart(Long cartId){
+        Optional<ShoppingCart> cart =  shoppingCartRepository.findById(cartId);
+        if(cart.isPresent()) {
+            ShoppingCart foundCart = cart.get();
+            Integer quantity = foundCart.getCartLines().stream().map(l -> l.getQuantity()).reduce(0, (a, b) -> a + b);
+            Double money = foundCart.getCartLines().stream().map(l -> l.getLineTotal()).reduce(0.0, (a, b) -> a + b);
+            foundCart.setTotalQuantity(quantity);
+            foundCart.setTotalMoney(money);
+            shoppingCartRepository.save(foundCart);
+        }
+    }
     @Override
     public void removeLineFromShoppingCart(Long cartId, Long cartLineId) {
         Optional<ShoppingCart> cart =  shoppingCartRepository.findById(cartId);
@@ -46,9 +70,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
                     .findFirst();
             if(cartLine.isPresent()){
                 foundCart.setTotalMoney(foundCart.getTotalMoney() - cartLine.get().getLineTotal());
+                foundCart.setTotalQuantity(foundCart.getTotalQuantity() - cartLine.get().getQuantity());
                 shoppingCartRepository.save(foundCart);
                 shoppingCartLineRepository.deleteById(cartLineId);
             }
+            calculateTotalInShoppingCart(cartId);
         }
     }
 
@@ -70,10 +96,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
             ShoppingCart foundCart = cart.get();
             ShoppingCartLine foundCartLine = cartLine.get();
             foundCart.setTotalMoney(foundCart.getTotalMoney() - foundCartLine.getLineTotal() + newCartLine.getLineTotal());
+            foundCart.setTotalQuantity(foundCart.getTotalQuantity() - foundCartLine.getQuantity() + newCartLine.getQuantity());
             newCartLine.setCart(foundCart);
             shoppingCartLineRepository.save(newCartLine);
             shoppingCartRepository.save(foundCart);
         }
+        calculateTotalInShoppingCart(cartId);
     }
 
     @Override
@@ -89,15 +117,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
             foundCartLine.setQuantity(newQuantity);
             foundCartLine.setLineTotal(newLineTotal);
             foundCart.setTotalMoney(foundCart.getTotalMoney() - oldLineTotal + newLineTotal);
+            foundCart.setTotalQuantity(foundCart.getTotalQuantity() - foundCartLine.getQuantity() + newQuantity);
 
             shoppingCartLineRepository.save(foundCartLine);
             shoppingCartRepository.save(foundCart);
         }
+        calculateTotalInShoppingCart(cartId);
     }
 
     @Override
-    public Optional<ShoppingCart> getShoppingCartByBuyerNotCompleted(Long buyerId) {
+    public List<ShoppingCart> getShoppingCartByBuyerNotCompleted(Long buyerId) {
         return shoppingCartRepository.getShoppingCartByBuyerNotCompleted(buyerId);
+
     }
 
 }

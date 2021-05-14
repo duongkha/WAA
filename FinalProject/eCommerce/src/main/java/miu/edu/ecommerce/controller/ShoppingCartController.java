@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/shoppingcarts")
 public class ShoppingCartController {
@@ -49,25 +50,30 @@ public class ShoppingCartController {
 
     // add line to shopping cart
     @PostMapping("/{cartId}/cartlines")
-    public void addLineToShoppingCart(@PathVariable Long cartId, @RequestBody ShoppingCartLine cartLine){
+    public ShoppingCartDTO addLineToShoppingCart(@PathVariable Long cartId, @RequestBody ShoppingCartLine cartLine){
+        //check Product is exist in cartId
         shoppingCartService.addLineToShoppingCart(cartId, cartLine);
+        return getShoppingCart(cartId);
     }
     // update line in shopping cart
     @PutMapping("/{cartId}/cartlines")
-    public void updateLineInShoppingCart(@PathVariable Long cartId, @RequestBody ShoppingCartLine cartLine){
+    public ShoppingCartDTO updateLineInShoppingCart(@PathVariable Long cartId, @RequestBody ShoppingCartLine cartLine){
         shoppingCartService.updateLineInShoppingCart(cartId, cartLine);
+        return getShoppingCart(cartId);
     }
 
     // update quantity in shopping cart
     @PutMapping("/{cartId}/cartlines/{lineId}")
-    public void updateLineInShoppingCart(@PathVariable Long cartId, @PathVariable Long lineId, @RequestBody Integer newQuantity){
+    public ShoppingCartDTO updateQuantityInShoppingCart(@PathVariable Long cartId, @PathVariable Long lineId, @RequestBody Integer newQuantity){
         shoppingCartService.updateQuantityInShoppingCartLine(cartId, lineId, newQuantity);
+        return getShoppingCart(cartId);
     }
 
     // remove line from shopping cart
     @DeleteMapping("/{cartId}/cartlines/{cartLineId}")
-    public void removeLineToShoppingCart(@PathVariable Long cartId, @PathVariable Long cartLineId){
+    public ShoppingCartDTO removeLineFromShoppingCart(@PathVariable Long cartId, @PathVariable Long cartLineId){
         shoppingCartService.removeLineFromShoppingCart(cartId, cartLineId);
+        return getShoppingCart(cartId);
     }
 
 
@@ -76,7 +82,6 @@ public class ShoppingCartController {
         orderController.createOrderFromCart(cartId, shippingAndPayment.shipping, shippingAndPayment.payment);
 //        return orderService.createOrder(order);
     }   //checked
-
 
 }
 

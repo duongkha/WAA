@@ -12,7 +12,13 @@ export default function Home() {
     const productAPI = APIs.productAPI;
     const state = store.getState();
     const  userInfo = state.userInfo;
+
+
     useEffect(() => {
+
+      console.log(userInfo);
+      console.log(state.cartInfo);
+
         const fecthData = async () => {
             try {
                 const { data } = await axios.get(productAPI);

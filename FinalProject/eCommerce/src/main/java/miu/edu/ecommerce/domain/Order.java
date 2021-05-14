@@ -27,6 +27,9 @@ public class Order implements Serializable {
     @Column(name = "order_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDate orderDate;
 
+    @Column(name = "total_quantity", columnDefinition = "int DEFAULT 0")
+    private Integer totalQuantity;
+
     @Column(name = "total_money", columnDefinition = "double default 0.0")
     private Double totalMoney;
 

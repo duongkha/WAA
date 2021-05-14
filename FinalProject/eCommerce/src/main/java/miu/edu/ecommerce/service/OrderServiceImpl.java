@@ -166,6 +166,7 @@ public class OrderServiceImpl implements OrderService {
             order.setShipping(shipping1);
             order.setPayment(payment1);
             order.setTotalMoney(cart1.getTotalMoney());
+            order.setTotalQuantity(cart1.getTotalQuantity());
             order.setBuyer(cart1.getBuyer());
             List<ShoppingCartLine> cartLines = shoppingCartService.getLinesByShoppingCart(cartId);
             cartLines.forEach(cartline -> {

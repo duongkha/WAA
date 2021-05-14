@@ -27,6 +27,9 @@ public class ShoppingCart implements Serializable {
     @Column(name = "cart_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDate cartDate;
 
+    @Column(name = "total_quantity", columnDefinition = "int DEFAULT 0")
+    private Integer totalQuantity;
+
     @Column(name = "total_money", columnDefinition = "Double DEFAULT 0.0")
     private Double totalMoney;
 

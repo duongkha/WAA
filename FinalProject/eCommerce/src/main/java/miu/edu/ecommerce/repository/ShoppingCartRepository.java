@@ -21,6 +21,6 @@ public interface ShoppingCartRepository extends CrudRepository<ShoppingCart,Long
     @Query(value = "SELECT sh.cartLines FROM ShoppingCart sh WHERE sh.id = :cartId")
     public List<ShoppingCartLine> getLinesByShoppingCard(@Param("cartId") Long cartId);
 
-    @Query(value = "SELECT sh FROM ShoppingCart sh WHERE sh.buyer.id = :buyerId and sh.completed <> 1")
-    public Optional<ShoppingCart> getShoppingCartByBuyerNotCompleted(@Param("buyerId") Long cartId);
+    @Query(value = "SELECT sh FROM ShoppingCart sh WHERE sh.buyer.id = :buyerId and sh.completed <> 1 ")
+    public List<ShoppingCart> getShoppingCartByBuyerNotCompleted(@Param("buyerId") Long cartId);
 }

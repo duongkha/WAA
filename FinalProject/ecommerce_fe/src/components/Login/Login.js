@@ -1,12 +1,12 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./Login.css"
 import axios from 'axios';
-import {APIConfig} from "../../store/API-Config";
-import {Link} from "react-router-dom";
-import {APIHeader, UserInfo} from "../../store/AppContext";
+import { APIConfig } from "../../store/API-Config";
+import { Link } from "react-router-dom";
+import { APIHeader, UserInfo, CartInfo } from "../../store/AppContext";
 import store from "../../store/store";
-import {useDispatch} from "react-redux";
-import {LOGIN_FETCH_SUCCESS, SET_USER} from "../../constants/constants";
+import { useDispatch } from "react-redux";
+import { LOGIN_FETCH_SUCCESS, SET_USER, SET_CART } from "../../constants/constants";
 
 export default function Login(props) {
     const APIs = useContext(APIConfig);
@@ -15,6 +15,7 @@ export default function Login(props) {
     const [password, setPassword] = useState("");
     const state = store.getState();
     const dispatch = useDispatch();
+    const { cartInfo, setCartInfo } = useContext(CartInfo);
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -24,34 +25,61 @@ export default function Login(props) {
         event.preventDefault();
 
         axios.post(APIs.loginAPI, {
-            username:email,
-            password:password
+            username: email,
+            password: password
         }).then(response => {
             dispatch({
                 type: LOGIN_FETCH_SUCCESS,
                 payload: response.data.token
             })
             const headers = {
-                 'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
                 'Authorization': 'Bearer ' + response.data.token,
             }
-            axios(APIs.userAPI + "/current",{headers})
-                .then(response=>{
+            axios(APIs.userAPI + "/current", { headers })
+                .then(response => {
                     const info = JSON.stringify(response.data);
                     dispatch({
                         type: SET_USER,
                         payload: info
                     })
                     setUserInfo(state.userInfo);
-                    document.location.href = '/';
+
+                    // get current buyer
+                    axios(APIs.userAPI + "/mybuyerinfo", { headers })
+                        .then(response => {
+                            if (response.data) {
+                                let buyerId = response.data.id;
+                                //get CartInfo
+                                console.log(headers);
+                                axios(APIs.buyerAPI + "/" + buyerId + "/cartnotcompleted", { headers })
+                                .then(response => {                                   
+                                    if (response.data) {
+                                        const info = JSON.stringify(response.data);
+                                        dispatch({
+                                            type: SET_CART,
+                                            payload: info
+                                        })
+                                    }
+                                    setCartInfo(info);
+                                    document.location.href = '/';            
+                                }).catch(error => {
+                                    alert(error.message);
+                                })
+                            }
+                        }).catch(error => {
+                            alert(error.message);
+                        })
+                               
                 }).catch(error => {
-                alert(error.message);
-            })
+                    alert(error.message);
+                })
         })
             .catch(error => {
                 alert(error.message);
             })
     }
+
 
     return (
         <div>

@@ -7,7 +7,7 @@ import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import {APIConfig} from "./store/API-Config";
 import Home from "./containers/Home/Home";
-import {UserInfo} from "./store/AppContext";
+import {UserInfo, CartInfo} from "./store/AppContext";
 import store from "./store/store";
 import {LOGOUT, SET_USER} from "./constants/constants";
 import Approval from "./components/Approval/Approval";
@@ -16,13 +16,13 @@ import Products from './containers/Products/Products';
 import ProductReview from "./components/ProductReview/ProductReview";
 import OrderManager from "./components/Seller/OrderManager";
 import Orders from "./components/Orders/Orders";
-
+import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
 
 
 function App() {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [userInfo, setUserInfo ] = useState(null);
-
+  const [cartInfo, setCartInfo ] = useState(null);
 
   const state = store.getState();
   const dispatch = useDispatch();
@@ -36,7 +36,12 @@ function App() {
 
   useEffect(()=>{
     setUserInfo(state.userInfo);
-  });
+    setCartInfo(state.cartInfo);
+  }, []);
+
+  // useEffect(()=>{
+  //   setCartInfo(state.cartInfo);
+  // }, [state.cartInfo]);
 
   // const productCategoryList = useSelector((state) => state.productCategoryList);
   // const {
@@ -58,10 +63,13 @@ function App() {
           roleAPI: 'http://localhost:8080/api/roles',
           userAPI: 'http://localhost:8080/api/users',
           adminAPI: 'http://localhost:8080/api/admin',
-          reviewAPI: 'http://localhost:8080/api/reviews'
+          reviewAPI: 'http://localhost:8080/api/reviews',
+          buyerAPI: 'http://localhost:8080/api/buyers',
+          cartAPI: 'http://localhost:8080/api/shoppingcarts'
         }
       }>
         <UserInfo.Provider value={{ userInfo, setUserInfo }}>
+        <CartInfo.Provider value={{ cartInfo, setCartInfo }}>
           <BrowserRouter>
             <div className="grid-container">
               <header className="row">
@@ -75,9 +83,9 @@ function App() {
                     {userInfo && userInfo.isBuyer && (
                   <Link to="/cart">
                     Cart
-                    {/*{cartItems.length > 0 && (*/}
-                    {/*    <span className="badge">{cartItems.length}</span>*/}
-                    {/*)}*/}
+                    {cartInfo && cartInfo.totalQuantity > 0 && (
+                     <span className="badge">{cartInfo.totalQuantity}</span>
+                    )}
                   </Link>
                   )}
 
@@ -142,6 +150,7 @@ function App() {
               </header>
 
               <main>
+              <Route path="/cart" component={ShoppingCart} ></Route>
                 <Route path="/productreviews" component={ProductReview}></Route>
                 <Route path="/approval" component={Approval}></Route>
                 <Route path="/signin" component={Login}></Route>
@@ -150,13 +159,14 @@ function App() {
                 <Route path="/orders" component={Orders}></Route>
                 <Route path="/orderlist/seller" component={OrderManager}></Route>
                 <Route path="/product/:id" component={Products} exact></Route>
-                <Route path="/" component={Home} exact></Route>
+                <Route path="/" component={Home} exact></Route>               
               </main>
               <footer className="row center">
                 <div>All right reserved</div>{' '}
               </footer>
             </div>
           </BrowserRouter>
+          </CartInfo.Provider>
         </UserInfo.Provider>
       </APIConfig.Provider>
   );
