@@ -35,7 +35,7 @@ export default function Products(props) {
       }, []);
 
   const addToCartHandler = () => {
-    props.history.push(`/shoppingcarts/${productId}?qty=${qty}`);
+    props.history.push(`/cart/${productId}?qty=${qty}`);
   };
   return (
 

@@ -19,7 +19,7 @@ import Orders from "./components/Orders/Orders";
 import Profile from "./components/Profile/Profile";
 import AddProduct from "./components/AddProduct/AddProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
-
+import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
 
 
 function App() {
@@ -148,6 +148,7 @@ function App() {
               </header>
 
               <main>
+                <Route path="/cart" component={ShoppingCart}></Route>
                 <Route path="/newproduct" component={AddProduct}></Route>
                 <Route path='/editproduct/:id' exact component={EditProduct} />
                 <Route path="/profile" component={Profile}></Route>
