@@ -73,7 +73,7 @@ const EditProduct = (props) =>{
           {product && (
           <form className="form" onSubmit={handleSubmit}>
               <div>
-                  <h1>New Product</h1>
+                  <h1>Edit Product</h1>
               </div>
               <div>
                   <label htmlFor="productName">Product Name</label>
